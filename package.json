@@ -2,7 +2,7 @@
   "name": "crudgenv1",
   "version": "1.0.0",
   "description": "crud generate from table schema",
-  "main": "app1.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -27,5 +27,16 @@
     "sequelize": "^6.37.3",
     "sqlite3": "^5.1.7",
     "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@sweetalert2/theme-dark": "^5.0.15",
+    "bootstrap": "5.3.3",
+    "bootstrap-icons": "^1.10.5",
+    "sass": "^1.67.0",
+    "sass-loader": "^13.2.0",
+    "vite": "^5.2.0",
+    "vite-plugin-handlebars": "^2.0.0",
+    "vite-plugin-nunjucks": "^0.2.0",
+    "vite-plugin-static-copy": "^1.0.5"
   }
 }

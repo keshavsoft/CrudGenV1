@@ -1,4 +1,4 @@
-import { defineConfig, normalizePath, build } from 'vite';
+import { build } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
 // import ConfigJson from '../../bin/Config.json' with {type: 'json'};
 

@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path';
-import ConfigJson from '../../bin/Config.json' with {type: 'json'};
+import ConfigJson from '../../binV4/Config.json' with {type: 'json'};
 
 const StartFunc = ({ inSrcPath }) => {
     const root = `${inSrcPath}`;

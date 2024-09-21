@@ -1,4 +1,4 @@
-import { StartFunc as StartFuncAssignSchema } from "../../../../../bin/kSequelize/AssignSchema.js";
+import { StartFunc as StartFuncAssignSchema } from "../../../../../binV4/kSequelize/AssignSchema.js";
 
 let StartFunc = async () => {
     const sequelize = await StartFuncAssignSchema();
