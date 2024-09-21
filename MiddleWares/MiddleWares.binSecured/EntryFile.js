@@ -11,7 +11,6 @@ let StartFunc = (req, res, next) => {
 
     req.locals = {};
     req.locals.KeshavSoft = {}
-    // req.locals.KeshavSoft.UserUuid = localResult;
     req.locals.KeshavSoft.DataPk = localResult;
 
     next();

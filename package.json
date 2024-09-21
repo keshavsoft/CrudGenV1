@@ -1,0 +1,31 @@
+{
+  "name": "crudgenv1",
+  "version": "1.0.0",
+  "description": "crud generate from table schema",
+  "main": "app1.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "home": "vite build --config KCode/viteConfig/vite.config-bs5.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "cookie-parser": "^1.4.6",
+    "directory-tree": "^3.5.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fs-extra": "^11.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "lowdb": "^7.0.1",
+    "mongodb": "^6.8.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.0",
+    "nodemailer": "^6.9.14",
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7",
+    "ws": "^8.18.0"
+  }
+}

@@ -1,4 +1,4 @@
-import { StartFunc as initializeSequelize } from '../../../../../bin/kSequelize/initializeSequelize.js';
+import { StartFunc as initializeSequelize } from '../../../../../binV4/kSequelize/initializeSequelize.js';
 
 let StartFunc = async () => {
     const sequelize = await initializeSequelize();
