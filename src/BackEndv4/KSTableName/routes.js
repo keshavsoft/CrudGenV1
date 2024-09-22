@@ -12,6 +12,7 @@ import { router as Images } from './Images/routes.js';
 import { router as Search } from './Search/routes.js';
 import { router as Bulk } from './Bulk/routes.js';
 import { router as ShowWithColumns } from './ShowWithColumns/routes.js';
+import { router as Sort } from './Sort/routes.js';
 
 import { router as SubTable } from './SubTable/routes.js';
 
@@ -25,6 +26,7 @@ router.use('/Images', Images);
 router.use('/Search', Search);
 router.use('/Bulk', Bulk);
 router.use('/ShowWithColumns', ShowWithColumns);
+router.use('/Sort', Sort);
 
 router.use('/SubTable', SubTable);
 
