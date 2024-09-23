@@ -3,8 +3,6 @@ import { StartFunc as StartFuncReturnDbObjectWithSchema } from '../CommonFuncs/R
 let StartFunc = () => {
     let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
 
-    LocalReturnData.KTF = false;
-
     const dbFromDbObjectWithSchema = StartFuncReturnDbObjectWithSchema();
 
     const db = dbFromDbObjectWithSchema.dbObject;

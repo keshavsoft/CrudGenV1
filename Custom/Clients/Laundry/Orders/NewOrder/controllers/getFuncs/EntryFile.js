@@ -6,9 +6,9 @@ let GetFunc = (req, res) => {
 
     let LocalFromRepo = GetFuncRepo({ inBranch: LocalBranch });
 
-    if (LocalFromRepo.KTF === false) res.Status(500).send(LocalFromRepo.KReason);
+    if (LocalFromRepo.KTF === false) res.status(500).send(LocalFromRepo.KReason);
 
-    res.Status(200).json(LocalFromRepo.JsonData);
+    res.status(200).json(LocalFromRepo.JsonData);
 };
 
 export { GetFunc };
