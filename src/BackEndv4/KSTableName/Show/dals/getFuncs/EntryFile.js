@@ -3,7 +3,7 @@ import { StartFunc as getBodyCheck } from '../../kLowDb/ReadFromFile/getBodyChec
 import { StartFunc as getimagesOnly } from '../../kLowDb/ReadFromFile/getimagesOnly.js';
 import { StartFunc as withJoins } from '../../kLowDb/ReadFromFile/withJoins.js';
 import { StartFunc as getRowFunc } from '../../kLowDb/ReadFromFile/getRowFunc.js';
-import { StartFunc as lastRow } from '../../kLowDb/ReadFromFile/WithJoins/lastRow.js';
+import { StartFunc as FilterInKeyInValue } from '../../kLowDb/ReadFromFile/FilterInKeyInValue.js';
 
 let GetFunc = () => {
     let LocalFromLowDb = ReadFromFile();
@@ -107,7 +107,7 @@ let GetLastRowFunc = () => {
 };
 
 let GetFilterFunc = ({ inFilterKey, inFilterValue }) => {
-    let LocalFromLowDb = lastRow({ inFilterKey, inFilterValue });
+    let LocalFromLowDb = FilterInKeyInValue({ inFilterKey, inFilterValue });
 
     if (LocalFromLowDb.KTF === false) {
         return false;

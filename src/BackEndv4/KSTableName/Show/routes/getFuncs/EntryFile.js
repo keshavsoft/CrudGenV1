@@ -19,7 +19,7 @@ router.get('/MaxRow', GetMaxRowFunc);
 router.get('/LastRow', GetLastRowFunc);
 router.get('/MinRow', GetMaxRowFunc);
 router.get('/FirstRow', GetLastRowFunc);
-router.get('/Filter/:FilterKey/:FilterValue', GetFilterFunc);
+router.get('/Filter/:inFilterKey/:inFilterValue', GetFilterFunc);
 router.get('/Sort/:Column', GetDataSortByColumnFunc);
 router.get('/:id', GetRowDataFunc);
 
