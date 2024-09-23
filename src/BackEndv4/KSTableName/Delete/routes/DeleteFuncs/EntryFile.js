@@ -8,5 +8,6 @@ import { DeleteFunc as DeleteFuncmiddleware } from '../../middlewares/DeleteFunc
 
 router.delete('/:Id', DeleteFuncmiddleware, DeleteFunc);
 router.delete('/ReferenceCheck/:Id', DeleteFuncmiddleware, ReferenceCheckFunc );
+router.delete('/', DeleteFuncmiddleware, ParamFunc);
 
 export { router };
