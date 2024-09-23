@@ -12,4 +12,8 @@ let ParamFunc = ({ inId }) => {
     return StartFuncwriteFile({ inId });
 };
 
-export { DeleteFunc, ReferenceCheckFunc, ParamFunc };
+let QueryFunc = ({ inId }) => {
+    return StartFuncwriteFile({ inId });
+};
+
+export { DeleteFunc, ReferenceCheckFunc, ParamFunc, QueryFunc };
