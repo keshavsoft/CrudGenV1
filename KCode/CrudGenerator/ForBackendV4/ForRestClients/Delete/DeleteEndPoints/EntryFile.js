@@ -4,6 +4,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 const CommonDelete = "Delete";
 
+import { StartFunc as home } from "./EndPointsContent/home.js";
+import { StartFunc as Param } from "./EndPointsContent/Param.js";
+import { StartFunc as Query } from "./EndPointsContent/Query.js";
+import { StartFunc as ReferenceCheck } from "./EndPointsContent/ReferenceCheck.js";
+
 let StartFunc = ({ inTablesCollection, inTo }) => {
     let LocalTypeName = `${CommonDelete}/restClients/DeleteEndPoints`;
     let LocalTo = inTo;
@@ -18,7 +23,19 @@ let StartFunc = ({ inTablesCollection, inTo }) => {
         let LoopInsideFileName = path.parse(element.name).name;
         let LocalFilePath = `${LocalTo}/${LoopInsideFileName}/${LocalTypeName}`;
 
-        LocalFuncWriteToHome({
+        home({
+            inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
+            inTo: `${LocalFilePath}`
+        });
+        Param({
+            inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
+            inTo: `${LocalFilePath}`
+        });
+        Query({
+            inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
+            inTo: `${LocalFilePath}`
+        });
+        ReferenceCheck({
             inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
             inTo: `${LocalFilePath}`
         });
