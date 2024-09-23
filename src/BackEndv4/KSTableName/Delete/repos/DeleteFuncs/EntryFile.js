@@ -3,6 +3,7 @@ import {
     ReferenceCheckFunc as ReferenceCheckFuncDal,
     ParamFunc as ParamFuncDal
 } from '../../dals/DeleteFuncs/EntryFile.js';
+
 import { DeleteFunc as DeleteFuncDalsForMongoDB } from '../../dalsForMongoDb/DeleteFuncs/EntryFile.js';
 
 import ConfigJson from '../../../../Config.json' assert {type: 'json'};
@@ -29,6 +30,7 @@ let ReferenceCheckFunc = async ({ inId }) => {
     };
     return await ReferenceCheckFuncDal({ inId });
 };
+
 let ParamFunc = async ({ inId }) => {
     if (ConfigJson.isSequelize) {
         return await DeleteFuncDalForSequalize({ inId });
@@ -37,6 +39,8 @@ let ParamFunc = async ({ inId }) => {
     if (ConfigJson.isMongoDb) {
         return await DeleteFuncDalsForMongoDB({ inId });
     };
+
     return await ParamFuncDal({ inId });
 };
+
 export { DeleteFunc, ReferenceCheckFunc, ParamFunc };

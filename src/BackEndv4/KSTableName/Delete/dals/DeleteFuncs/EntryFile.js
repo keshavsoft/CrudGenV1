@@ -3,10 +3,13 @@ import { StartFunc as StartFuncwriteFile } from '../../kLowDb/DeleteFromFile/Del
 let DeleteFunc = ({ inId }) => {
     return StartFuncwriteFile({ inId });
 };
+
 let ReferenceCheckFunc = ({ inId }) => {
     return StartFuncwriteFile({ inId });
 };
+
 let ParamFunc = ({ inId }) => {
     return StartFuncwriteFile({ inId });
 };
+
 export { DeleteFunc, ReferenceCheckFunc, ParamFunc };
