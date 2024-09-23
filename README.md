@@ -56,27 +56,29 @@ This project focuses on automating crudBD operations for JSON files, making it e
 
 ### <a name="installation"></a>## **Installation** 🚀
 
-1. Create a folder and navigate into it using the command prompt.
+1. https://git-scm.com/
 
-2. Clone the repository
+2. Create a folder and navigate into it using the command prompt.
+
+3. Clone the repository
    ```
    
-   git clone https://github.com/keshavsoft/crudBD
+   git clone https://github.com/keshavsoft/CrudGenV1
    
    ```
-3. Change Directory to crudBDGenByPath or Open the cloned folder, navigate to crudBD, and open the command prompt.
+4. Change Directory to CrudGenV1 or Open the cloned folder, navigate to CrudGenV1, and open the command prompt.
    ```
    
-    cd crudBD
+    cd CrudGenV1
    
    ```
-4. Create .env in the root location, and the below line to that file
+5. Create .env in the root location, and the below line to that file
    ```
    
     PORT=7019
    
    ```
-5. Run the batch file (For Windows)
+6. Run the batch file (For Windows)
    ```
    
    fbd.bat
@@ -92,7 +94,7 @@ This project focuses on automating crudBD operations for JSON files, making it e
         chmod +x boilerplate.sh and sh boilerplate.sh
      ``
    
- 5. For Executing:
+ 7. For Executing:
    
    ```
    
