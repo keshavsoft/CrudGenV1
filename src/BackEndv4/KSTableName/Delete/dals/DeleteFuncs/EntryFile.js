@@ -6,5 +6,7 @@ let DeleteFunc = ({ inId }) => {
 let ReferenceCheckFunc = ({ inId }) => {
     return StartFuncwriteFile({ inId });
 };
-
-export { DeleteFunc, ReferenceCheckFunc};
+let ParamFunc = ({ inId }) => {
+    return StartFuncwriteFile({ inId });
+};
+export { DeleteFunc, ReferenceCheckFunc, ParamFunc };
