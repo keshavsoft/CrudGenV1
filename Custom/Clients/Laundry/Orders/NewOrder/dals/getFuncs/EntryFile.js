@@ -1,11 +1,10 @@
-import { StartFunc as Generate } from '../../kLowDb/Generate/QrCode.js';
+import { StartFunc as MaxRow } from '../../kLowDb/ReadFile/MaxRow.js';
 
-let GetIdFunc = ({ inBranch, inId }) => {
-    console.log("inBranch, inId :",inBranch, inId );
-    
-    let LocalFromLowDb = Generate({ inBranch, inId });
+let GetFunc = ({ inBranch }) => {
+
+    let LocalFromLowDb = MaxRow({ inBranch });
 
     return LocalFromLowDb;
 };
 
-export { GetIdFunc };
+export { GetFunc };
