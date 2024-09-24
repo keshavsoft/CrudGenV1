@@ -9,7 +9,7 @@ import { StartFunc as Param } from "./EndPointsContent/Param.js";
 import { StartFunc as Query } from "./EndPointsContent/Query.js";
 import { StartFunc as ReferenceCheck } from "./EndPointsContent/ReferenceCheck.js";
 
-let StartFunc = ({ inTablesCollection, inTo }) => {
+let StartFunc = ({ inTablesCollection, inTo, inConfigJson }) => {
     let LocalTypeName = `${CommonDelete}/restClients/DeleteEndPoints`;
     let LocalTo = inTo;
 
@@ -25,27 +25,32 @@ let StartFunc = ({ inTablesCollection, inTo }) => {
 
         home({
             inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
-            inTo: `${LocalFilePath}`
+            inTo: `${LocalFilePath}`,
+            inConfigJson,
+            inTableNameWithExtension: element.name
         });
+
         Param({
             inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
-            inTo: `${LocalFilePath}`
+            inTo: `${LocalFilePath}`,
+            inConfigJson,
+            inTableNameWithExtension: element.name
         });
+
         Query({
             inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
-            inTo: `${LocalFilePath}`
+            inTo: `${LocalFilePath}`,
+            inConfigJson,
+            inTableNameWithExtension: element.name
         });
+
         ReferenceCheck({
             inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
-            inTo: `${LocalFilePath}`
+            inTo: `${LocalFilePath}`,
+            inConfigJson,
+            inTableNameWithExtension: element.name
         });
     });
-};
-
-const LocalFuncWriteToHome = ({ inFrom, inTo }) => {
-    let LocalFileData = `DELETE http://localhost:${inFrom}/${CommonDelete}/{inPkToBeDeleted}`;
-
-    fs.writeFileSync(`${inTo}/home.http`, LocalFileData);
 };
 
 export { StartFunc };
