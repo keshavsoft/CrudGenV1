@@ -1,4 +1,4 @@
-import { StartFunc as StartFuncCommonFuncs } from '../CommonFuncs/QrCodes.js';
+import { StartFunc as StartFuncCommonFuncs } from '../CommonFuncs/Transactions.js';
 
 let StartFunc = ({ inBranch }) => {
     // let LocalFindValue = "02/09/2024";
@@ -7,32 +7,36 @@ let StartFunc = ({ inBranch }) => {
     let LocalBranchName = inBranch;
     let LocalReturnData = { KTF: false }
 
-    const Orderdb = StartFuncCommonFuncs();
+    const Orderdb = StartFuncCommonFuncs({ inBranchName: LocalBranchName });
     Orderdb.read();
 
     let LocalFilterBranchData = Orderdb.data.filter(e => {
-        return new Date(e.BookingData.OrderData.Currentdateandtime).toLocaleDateString('en-GB') == LocalFindValue && e.BookingData.OrderData.BranchName === LocalBranchName;
-    })
-        .map(e => {
-            return {
-                OrderNumber: e.GenerateReference.ReferncePk, // example key
-                QrCode: e.pk,
-                ItemName: e.ItemName,
-                Rate: e.Rate,
-                DeliveryDate: new Date(e.DeliveryDateTime).toLocaleDateString('en-GB'),
-                OrderDate: new Date(e.BookingData.OrderData.Currentdateandtime).toLocaleDateString('en-GB'),
-                // Add more keys as needed
-            };
-        });
+        return new Date(e.OrderData.Currentdateandtime).toLocaleDateString('en-GB') == LocalFindValue && e.OrderData.BranchName === LocalBranchName;
+    });
 
     if (LocalFilterBranchData.length === 0) {
         LocalReturnData.KReason = "No Data"
         return LocalReturnData;
     };
+    let LocalItemWise = LocalItemWiseFunc({ inOrderData: LocalFilterBranchData });
+
     LocalReturnData.KTF = true;
-    LocalReturnData.JsonData = LocalFilterBranchData.slice().reverse();
+    LocalReturnData.JsonData = LocalItemWise.slice().reverse();
 
     return LocalReturnData;
 };
 
+const LocalItemWiseFunc = ({ inOrderData }) => {
+    let jvarLocalDataArray = [];
+    inOrderData.forEach(element => {
+        Object.values(element.ItemsInOrder).forEach(function (key) {
+            key.pk = element.pk;
+            jvarLocalDataArray.push(key);
+        });
+    });
+    return jvarLocalDataArray;
+
+};
+
 export { StartFunc };
+// StartFunc({ inBranch: "ANR" })
