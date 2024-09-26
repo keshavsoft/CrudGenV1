@@ -208,12 +208,11 @@
   {
     "UserName": "YD",
     "Password": "YD",
-    "Branch": "YD",
-    "BranchMobile": "5746",
-    "UserMobile": "4667",
+    "Branch": "yd",
+    "BranchMobile": "9848163021",
+    "UserMobile": "9848163021",
     "isAdminValidated": false,
-    "isMailValidated": true,
-    "DataPk": 318,
-    "UuId": "07714eba-d853-413d-a0b0-6a60a8eb8cf8"
+    "isMailValidated": false,
+    "UuId": "3499f881-e5ae-414a-876d-d32b1abc211d"
   }
 ]
