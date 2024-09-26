@@ -33,13 +33,19 @@ let jFLocalInsertAggValues = ({ inData }) => {
 
     jVarLocalReturnObject = Object.entries(inData).map(element => {
         element[1].AggValues = {};
+        element[1].IsSettled = false;
+        element[1].IsItems = false;
+        element[1].TimeSpan = TimeSpan(element[1].OrderData.Currentdateandtime);
+
+        if (Object.values(element[1].ItemsInOrder).map(p => p.Pcs).reduce((acc, val) => acc + parseInt(val), 0) > 0) {
+            element[1].IsItems = true;
+        };
+
         element[1].AggValues.ItemDetails = `${Object.keys(element[1].ItemsInOrder).length} / ${Object.values(element[1].ItemsInOrder).map(p => p.Pcs).reduce((acc, val) => acc + parseInt(val), 0)}`;
 
         element[1].AggValues.SettlementAmount = ""
         if (Object.values(element[1].CheckOutData)[0]) {
             element[1].AggValues.SettlementAmount = Object.values(element[1].CheckOutData)[0].CardAmount + Object.values(element[1].CheckOutData)[0].CashAmount + Object.values(element[1].CheckOutData)[0].UPIAmount;
-            element[1].IsSettled = false;
-            element[1].TimeSpan = TimeSpan(element[1].OrderData.Currentdateandtime);
         };
         if (Object.keys(element[1].CheckOutData).length > 0) {
             element[1].IsSettled = true;
