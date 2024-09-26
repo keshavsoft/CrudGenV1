@@ -1,1 +1,1 @@
-cp -arf ../LaundryFrontEnd/Laundry ./public
+cp -arf ../LaundryFrontEnd/publicDir ./public/Laundry
