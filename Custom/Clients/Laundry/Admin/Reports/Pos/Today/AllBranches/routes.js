@@ -8,6 +8,7 @@ import { router as ItemWise } from "./ItemWise/routes.js";
 import { router as ToFactory } from "./ToFactory/routes.js";
 import { router as FactoryScan } from "./FactoryScan/routes.js";
 import { router as FactoryInwardReturn } from "./FactoryInwardReturn/routes.js";
+import { router as WashingStart } from "./WashingStart/routes.js";
 
 router.use("/QrCodes", QrCodes);
 router.use("/Orders", Orders);
@@ -15,5 +16,6 @@ router.use("/ItemWise", ItemWise);
 router.use("/ToFactory", ToFactory);
 router.use("/FactoryScan", FactoryScan);
 router.use("/FactoryInwardReturn", FactoryInwardReturn);
+router.use("/WashingStart", WashingStart);
 
 export { router };
