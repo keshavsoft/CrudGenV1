@@ -15,4 +15,13 @@ call npm run TodayQrCodes
 call npm run TodayOrders
 
 xcopy .\publicDir ..\CrudGenV1\public\Laundry /h /i /c /k /e /r /y
+
+cd ..\FRONTENDMAZERVITE
+
+call npm run FromBranchVoucher
+call npm run FromBranchQrCodes
+
+xcopy .\publicDir ..\CrudGenV1\public\Factory /h /i /c /k /e /r /y
+
+
 cd ..\CrudGenV1

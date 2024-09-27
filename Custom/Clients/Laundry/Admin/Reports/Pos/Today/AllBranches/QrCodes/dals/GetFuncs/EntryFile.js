@@ -1,8 +1,7 @@
-// import { StartFunc as ToadyQrAllReports } from '../../kLowDb/ReadFileList/ToadyQrAllReports.js';
+import { StartFunc as ToadyQrAllReports } from '../../kLowDb/ReadFromFile/ToadyQrAllReports.js';
 
 let GetAllFuncs = () => {
-    return "From Dal"
-    // return ToadyQrAllReports({ inBranch });
+    return ToadyQrAllReports();
 };
 
 export {
