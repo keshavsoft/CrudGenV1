@@ -4,6 +4,10 @@ let GetAllFuncs = () => {
     return ToadyQrAllReports();
 };
 
+let GetAsIsFuncs = () => {
+    return ToadyQrAllReports();
+};
+
 export {
-    GetAllFuncs
+    GetAllFuncs, GetAsIsFuncs
 };
