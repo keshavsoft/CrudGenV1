@@ -4,4 +4,8 @@ let GetFunc = () => {
     return StartFuncPullData();
 };
 
-export { GetFunc };
+let GetNotEmptyFunc = () => {
+    return StartFuncPullData();
+};
+
+export { GetFunc, GetNotEmptyFunc };

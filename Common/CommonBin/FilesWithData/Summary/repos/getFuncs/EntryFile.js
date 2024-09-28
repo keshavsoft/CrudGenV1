@@ -1,7 +1,11 @@
-import { GetFunc as GetFuncDal } from '../../dals/getFuncs/EntryFile.js';
+import { GetFunc as GetFuncDal, GetNotEmptyFunc as GetNotEmptyFuncDal } from '../../dals/getFuncs/EntryFile.js';
 
 let GetFunc = () => {
     return GetFuncDal();
 };
 
-export { GetFunc };
+let GetNotEmptyFunc = () => {
+    return GetNotEmptyFuncDal();
+};
+
+export { GetFunc, GetNotEmptyFunc };
