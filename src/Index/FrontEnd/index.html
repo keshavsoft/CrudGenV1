@@ -36,11 +36,29 @@
             <p>If this button appears blue and the link appears purple, you've done it!</p>
         </div>
 
-        <a href="bin/HtmlFiles/" class="btn btn-primary me-3">Json CRUD</a>
-        <a id="popoverButton" class="text-success" href="./chat/chat.html" role="button" data-bs-toggle="popover"
-            title="Custom popover" data-bs-content="This is a Bootstrap popover.">Chat</a>
-        <a href="/LoginUsers/HtmlFiles/login.html" class="btn btn-primary me-3">Laundry</a>
-        <a href="#" id="LaundryfactoryId" class="btn btn-primary me-3">Laundry</a>
+        <div class="row">
+            <div class="col">
+                <a href="bin/HtmlFiles/" class="btn btn-primary me-3">Json CRUD</a>
+
+            </div>
+            <div class="col">
+                <a id="popoverButton" class="text-success" href="./chat/chat.html" role="button"
+                    data-bs-toggle="popover" title="Custom popover"
+                    data-bs-content="This is a Bootstrap popover.">Chat</a>
+            </div>
+            <div class="col">
+                <a href="/LoginUsers/HtmlFiles/login.html" class="btn btn-primary me-3">Laundry Branch</a>
+
+            </div>
+            <div class="col">
+                <div class="d-grid gap-2">
+                    <button type="button" id="LaundryfactoryId" name="" id="" class="btn btn-primary">
+                        Laundry Factory
+                    </button>
+                </div>
+
+            </div>
+        </div>
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel">
@@ -100,15 +118,18 @@
 
         <p class="text-muted">Created and open sourced by the Bootstrap team. Licensed MIT.</p>
     </div>
-    <script>
-        let jVarLocalLaundryfactoryId = document.getElementById('LaundryfactoryId');
-        jVarLocalLaundryfactoryId.addEventListener("click", LaundryRedirect);
 
+    <script>
         const LaundryRedirect = () => {
             localStorage.setItem("FactoryName", "Vizag")
             window.location.href = "/Factory/FromBranchVoucher/DCShowAll.html"
 
-        }
+        };
+
+        let jVarLocalLaundryfactoryId = document.getElementById('LaundryfactoryId');
+        jVarLocalLaundryfactoryId.addEventListener("click", LaundryRedirect);
+
+
     </script>
 </body>
 
