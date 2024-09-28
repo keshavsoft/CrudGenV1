@@ -7,5 +7,6 @@ import {
 } from '../../controllers/GetFuncs/EntryFile.js';
 
 router.get('/', GetFuncs);
+router.get('/AsIs', GetFuncs);
 
 export { router };
