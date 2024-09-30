@@ -17,5 +17,8 @@ router.post('/SendMail', PostSendMailFunc);
 router.post('/ForTemplate', PostForTemplateFunc);
 router.post('/WithReferenceCheck', PostWithReferenceCheckFunc);
 router.post('/AsIs', PostAsIsFunc);
+router.post('/WithUser', PostAsIsFunc);
+router.post('/WithGps', PostAsIsFunc);
+router.post('/WithUserAndGps', PostAsIsFunc);
 
 export { router };
