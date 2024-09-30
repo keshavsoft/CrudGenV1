@@ -1,10 +1,9 @@
-//import { StartFunc as Generate } from '../../kLowDb/Generate/QrCode.js';
+import { StartFunc as PullData } from '../../kLowDb/PullData/EntryFile.js';
 
 let GetFunc = () => {
-    console.log("pushpa");
+    let LocalFromLowDb = PullData();
 
-    //let LocalFromLowDb = Generate();
-    //return LocalFromLowDb;
+    return LocalFromLowDb;
 };
 
 export { GetFunc };
