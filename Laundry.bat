@@ -26,4 +26,13 @@ call npm run FromBranchQrCodes
 xcopy .\publicDir ..\CrudGenV1\public\Factory /h /i /c /k /e /r /y
 
 
+
+cd ..\crudFrontEnd
+
+call npm run Dashboard
+
+xcopy .\publicDir ..\CrudGenV1\public\crudFrontEnd /h /i /c /k /e /r /y
+
+
+
 cd ..\CrudGenV1
