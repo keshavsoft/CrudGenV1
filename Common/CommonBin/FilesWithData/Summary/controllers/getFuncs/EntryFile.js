@@ -1,4 +1,8 @@
-import { GetFunc as GetFuncRepo, GetNotEmptyFunc as GetNotEmptyFuncRepo } from '../../repos/getFuncs/EntryFile.js';
+import {
+    GetFunc as GetFuncRepo,
+    GetNotEmptyFunc as GetNotEmptyFuncRepo
+} from '../../repos/getFuncs/EntryFile.js';
+
 let GetFunc = async (req, res) => {
     let LocalFromRepo = await GetFuncRepo();
 
