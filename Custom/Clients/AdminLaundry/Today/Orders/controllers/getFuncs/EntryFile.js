@@ -1,9 +1,9 @@
 import { GetFunc as GetFuncRepo } from '../../repos/getFuncs/EntryFile.js';
 
-let GetFunc = async (req, res) => {
-    let LocalFromRepo = await GetFuncRepo();
+let GetFunc = (req, res) => {
+    let LocalFromRepo = GetFuncRepo();
 
-    res.json(LocalFromRepo);
+    res.json(LocalFromRepo.JsonData);
 };
 
 export { GetFunc };

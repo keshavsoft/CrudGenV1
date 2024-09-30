@@ -1,25 +1,14 @@
-import { StartFunc as StartFuncReturnDbObjectWithSchema } from '../CommonFuncs/ReturnDbObjectWithSchema.js';
+import { StartFunc as ANR } from '../CommonFuncs/ANR.js';
+import { StartFunc as CSO } from '../CommonFuncs/CSO.js';
 
 let StartFunc = () => {
     let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
 
-    LocalReturnData.KTF = false;
-
-    const db = StartFuncReturnDbObjectWithSchema();
-    db.read();
-
-    if ("error" in db.data) {
-        return db.data;
-    };
-
-    if (Array.isArray(db.data) === false) {
-        LocalReturnData.KReason = "Not array inside Json file...";
-
-        return LocalReturnData;
-    };
-
     LocalReturnData.KTF = true;
-    LocalReturnData.JsonData = db.data;
+    LocalReturnData.JsonData = [
+        ...ANR(),
+        ...CSO()
+    ];
 
     return LocalReturnData;
 };
