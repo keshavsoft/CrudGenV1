@@ -33,8 +33,21 @@ let PostAsIsFunc = async ({ inPostBody, inDomainName }) => {
     return await asIs({ inDataToInsert: inPostBody, inDomainName });
 };
 
+let PostWithUserFunc = async ({ inPostBody, inDomainName }) => {
+    return await asIs({ inDataToInsert: inPostBody, inDomainName });
+};
+
+let PostWithGpsFunc = async ({ inPostBody, inDomainName }) => {
+    return await asIs({ inDataToInsert: inPostBody, inDomainName });
+};
+
+let PostWithUserAndGpsFunc = async ({ inPostBody, inDomainName }) => {
+    return await asIs({ inDataToInsert: inPostBody, inDomainName });
+};
+
 export {
     PostFunc, PostFuncGenUuId, PostWithCheckAndGenPkFunc,
     PostSendMailGenUuIdFunc, PostSendMailFunc, PostForTemplateFunc,
-    PostWithReferenceCheckFunc, PostAsIsFunc
+    PostWithReferenceCheckFunc, PostAsIsFunc, PostWithUserFunc, PostWithGpsFunc,
+    PostWithUserAndGpsFunc
 };

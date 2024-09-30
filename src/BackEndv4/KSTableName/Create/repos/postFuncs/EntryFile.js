@@ -6,7 +6,10 @@ import {
     PostSendMailFunc as PostSendMailFuncDal,
     PostForTemplateFunc as PostForTemplateFuncDal,
     PostWithReferenceCheckFunc as PostWithReferenceCheckFuncDal,
-    PostAsIsFunc as PostAsIsFuncDal
+    PostAsIsFunc as PostAsIsFuncDal,
+    PostWithUserFunc as PostWithUserFuncDal,
+    PostWithGpsFunc as PostWithGpsFuncDal,
+    PostWithUserAndGpsFunc as PostWithUserAndGpsFuncDal
 } from '../../dals/postFuncs/EntryFile.js';
 
 import {
@@ -54,6 +57,7 @@ let PostWithCheckAndGenPkFunc = async (inPostBody) => {
 
     return PostWithCheckAndGenPkFuncDal(inPostBody);
 };
+
 let PostSendMailGenUuIdFunc = async (inPostBody) => {
     if (ConfigJson.isSequelize) {
         return PostFuncDalsForSequelize(inPostBody);
@@ -89,6 +93,7 @@ let PostForTemplateFunc = async ({ inPostBody, inDomainName }) => {
 
     return await PostForTemplateFuncDal({ inPostBody, inDomainName });
 };
+
 let PostWithReferenceCheckFunc = async ({ inPostBody, inDomainName }) => {
     if (ConfigJson.isSequelize) {
         return PostFuncDalsForSequelize(inPostBody);
@@ -100,6 +105,7 @@ let PostWithReferenceCheckFunc = async ({ inPostBody, inDomainName }) => {
 
     return await PostWithReferenceCheckFuncDal({ inPostBody, inDomainName });
 };
+
 let PostAsIsFunc = async ({ inPostBody, inDomainName }) => {
     if (ConfigJson.isSequelize) {
         return PostFuncDalsForSequelize(inPostBody);
@@ -111,8 +117,46 @@ let PostAsIsFunc = async ({ inPostBody, inDomainName }) => {
 
     return await PostAsIsFuncDal({ inPostBody, inDomainName });
 };
+
+let PostWithUserFunc = async ({ inPostBody, inDomainName }) => {
+    if (ConfigJson.isSequelize) {
+        return PostFuncDalsForSequelize(inPostBody);
+    };
+
+    if (ConfigJson.isMongoDb) {
+        return PostFuncDalsForMongoDB(inPostBody);
+    };
+
+    return await PostWithUserFuncDal({ inPostBody, inDomainName });
+};
+
+let PostWithGpsFunc = async ({ inPostBody, inDomainName }) => {
+    if (ConfigJson.isSequelize) {
+        return PostFuncDalsForSequelize(inPostBody);
+    };
+
+    if (ConfigJson.isMongoDb) {
+        return PostFuncDalsForMongoDB(inPostBody);
+    };
+
+    return await PostWithGpsFuncDal({ inPostBody, inDomainName });
+};
+
+let PostWithUserAndGpsFunc = async ({ inPostBody, inDomainName }) => {
+    if (ConfigJson.isSequelize) {
+        return PostFuncDalsForSequelize(inPostBody);
+    };
+
+    if (ConfigJson.isMongoDb) {
+        return PostFuncDalsForMongoDB(inPostBody);
+    };
+
+    return await PostWithUserAndGpsFuncDal({ inPostBody, inDomainName });
+};
+
 export {
     PostFunc, PostFuncGenUuId, PostWithCheckAndGenPkFunc,
     PostSendMailGenUuIdFunc, PostSendMailFunc, PostForTemplateFunc,
-    PostWithReferenceCheckFunc, PostAsIsFunc
+    PostWithReferenceCheckFunc, PostAsIsFunc, PostWithUserFunc, PostWithGpsFunc,
+    PostWithUserAndGpsFunc
 };
