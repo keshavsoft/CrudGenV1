@@ -2,7 +2,7 @@ import { StartFunc as ANR } from '../CommonFuncs/ANR.js';
 import { StartFunc as CSO } from '../CommonFuncs/CSO.js';
 import { StartFunc as GD } from '../CommonFuncs/GD.js';
 import { StartFunc as GWK } from '../CommonFuncs/GWK.js';
-import { StartFunc as GWK } from '../CommonFuncs/KKD.js';
+import { StartFunc as KKD } from '../CommonFuncs/KKD.js';
 import { StartFunc as KPA } from '../CommonFuncs/KPA.js';
 import { StartFunc as LBC } from '../CommonFuncs/LBC.js';
 import { StartFunc as MSNvzm } from '../CommonFuncs/MSNvzm.js';
