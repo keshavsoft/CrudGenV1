@@ -33,8 +33,8 @@ let GetRowQrDataFunc = ({ inFactory, inId }) => {
     return GetRowQrDataFuncDal({ inFactory, inId });
 };
 
-let GetRowCountFunc = ({ inId }) => {
-    return GetRowCountFuncDal({ inId });
+let GetRowCountFunc = ({ inBranch, inId }) => {
+    return GetRowCountFuncDal({ inBranch, inId });
 };
 
 export {
