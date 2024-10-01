@@ -1,4 +1,5 @@
 import { StartFunc as GetRowDataById } from '../../kLowDb/ReadFileList/GetRowDataById.js';
+import { StartFunc as GetRowCountById } from '../../kLowDb/ReadFileList/GetRowCountById.js';
 
 let GetRowDataFunc = ({ inBranch, inId }) => {
     let LocalFromLowDb = GetRowDataById({ inBranch, inId });
@@ -7,7 +8,7 @@ let GetRowDataFunc = ({ inBranch, inId }) => {
 };
 
 let GetRowCountFunc = ({ inBranch, inId }) => {
-    let LocalFromLowDb = GetRowDataById({ inBranch, inId });
+    let LocalFromLowDb = GetRowCountById({ inBranch, inId });
 
     return LocalFromLowDb;
 };
