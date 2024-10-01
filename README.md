@@ -72,7 +72,7 @@ This project focuses on automating crudBD operations for JSON files, making it e
     cd CrudGenV1
    
    ```
-5. Create .env in the root location, and the below line to that file
+5. Create .env in the root location, and paste the below line to that file
    ```
    
     PORT=7019
