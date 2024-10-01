@@ -6,6 +6,12 @@ let GetRowDataFunc = ({ inBranch, inId }) => {
     return LocalFromLowDb;
 };
 
+let GetRowCountFunc = ({ inBranch, inId }) => {
+    let LocalFromLowDb = GetRowDataById({ inBranch, inId });
+
+    return LocalFromLowDb;
+};
+
 export {
-    GetRowDataFunc
+    GetRowDataFunc, GetRowCountFunc
 };

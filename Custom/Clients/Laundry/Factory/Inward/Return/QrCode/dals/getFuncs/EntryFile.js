@@ -14,6 +14,12 @@ let GetRowQrDataFunc = ({ inId }) => {
 
     return LocalFromLowDb;
 };
+let GetRowCountFunc = ({ inId }) => {
+    let LocalFromLowDb = GetRowQrDataById({ inId });
+
+    return LocalFromLowDb;
+};
+
 export {
-    GetRowDataFunc, GetRowQrDataFunc
+    GetRowDataFunc, GetRowQrDataFunc, GetRowCountFunc
 };

@@ -1,6 +1,8 @@
 import {
     GetRowDataFunc as GetRowDataFuncRepo,
     GetRowQrDataFunc as GetRowQrDataFuncRepo,
+    GetRowCountFunc as GetRowCountFuncRepo
+    
 } from '../../repos/getFuncs/EntryFile.js';
 
 let GetRowDataFunc = async (req, res) => {
@@ -25,6 +27,19 @@ let GetRowQrDataFunc = async (req, res) => {
     res.status(200).json(LocalFromRepo.JsonData);
 };
 
+let GetRowCountFunc = async (req, res) => {
+    let LocalParams = req.params;
+    let Localid = LocalParams.id;
+    let LocalFromRepo = GetRowCountFuncRepo({ inId: Localid, });
+
+    if (LocalFromRepo.KTF === false) {
+        res.status(500).send(LocalFromRepo.KReason);
+        return;
+    };
+
+    res.status(200).json(LocalFromRepo.JsonData);
+};
+
 export {
-    GetRowDataFunc, GetRowQrDataFunc
+    GetRowDataFunc, GetRowQrDataFunc, GetRowCountFunc
 };
