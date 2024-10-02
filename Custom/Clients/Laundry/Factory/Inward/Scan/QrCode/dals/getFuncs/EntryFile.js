@@ -4,6 +4,7 @@ import { StartFunc as Scanned } from '../../kLowDb/ReadFileList/Scanned.js';
 import { StartFunc as Returns } from '../../kLowDb/ReadFileList/EntryRetuns.js';
 import { StartFunc as GetRowDataById } from '../../kLowDb/ReadFileList/GetRowDataById.js';
 import { StartFunc as GetRowQrDataById } from '../../kLowDb/ReadFileList/GetRowQrDataById.js';
+import { StartFunc as GetRowCountById } from '../../kLowDb/ReadFileList/GetRowCountById.js';
 
 // import HomeJson from './home.json' with {type: 'json'};
 
@@ -44,7 +45,7 @@ let GetRowQrDataFunc = ({ inId }) => {
 };
 
 let GetRowCountFunc = ({ inBranch, inId }) => {
-    let LocalFromLowDb = GetRowQrDataById({ inBranch, inId });
+    let LocalFromLowDb = GetRowCountById({ inFactory: inBranch, inId });
 
     return LocalFromLowDb;
 };

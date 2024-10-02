@@ -74,7 +74,7 @@ let GetRowCountFunc = async (req, res) => {
         return;
     };
 
-    res.status(200).json(LocalFromRepo.JsonData);
+    res.status(200).json(LocalFromRepo);
 };
 
 export {
