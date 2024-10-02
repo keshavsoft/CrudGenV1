@@ -9,7 +9,7 @@ let StartFunc = async () => {
 
     ConfigJson.jsonConfig.tableAndColumns.children.forEach(element => {
         for (const property in element.fileData) {
-            if (["STRING", "TELEPHONE"].includes(element.fileData[property].type)) {
+            if (["STRING", "TELEPHONE", "MONTH"].includes(element.fileData[property].type)) {
                 element.fileData[property].type = DataTypes.STRING;
             };
 
