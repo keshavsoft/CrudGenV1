@@ -30,17 +30,28 @@ let StartFunc = async () => {
                 return await false;
             };
 
-            sequelize = new Sequelize(Configjson.sequelizeConfig.DbName,
-                process.env.KS_USERNAME_FORMYSQL,
-                process.env.KS_PASSWORD_FORMYSQL,
-                {
-                    host: process.env.KS_HOST_FORMYSQL,
-                    dialect: 'mysql'
-                });
+            if ("KS_PORT_FORMYSQL" in process.env === false) {
+                sequelize = new Sequelize(Configjson.sequelizeConfig.DbName,
+                    process.env.KS_USERNAME_FORMYSQL,
+                    process.env.KS_PASSWORD_FORMYSQL,
+                    {
+                        host: process.env.KS_HOST_FORMYSQL,
+                        dialect: 'mysql'
+                    });
+            } else {
+                sequelize = new Sequelize(Configjson.sequelizeConfig.DbName,
+                    process.env.KS_USERNAME_FORMYSQL,
+                    process.env.KS_PASSWORD_FORMYSQL,
+                    {
+                        host: process.env.KS_HOST_FORMYSQL,
+                        dialect: 'mysql',
+                        port: process.env.KS_PORT_FORMYSQL
+                    });
+            };
 
             return await sequelize;
         };
-        
+
         if (CommonsequelizeConfig.isPostgres) {
             if ("KS_PASSWORD_FORPOSTGRES" in process.env === false) {
                 console.log("KS_PASSWORD_FORPOSTGRES not found in .env file");
@@ -81,4 +92,74 @@ let StartFunc = async () => {
     return await sequelize;
 };
 
+let StartFunc_WithDefaultPort = async () => {
+    let sequelize;
+
+    try {
+        if (CommonsequelizeConfig.isMysql) {
+            if ("KS_PASSWORD_FORMYSQL" in process.env === false) {
+                console.log("KS_PASSWORD_FORMYSQL not found in .env file");
+                return await false;
+            };
+
+            if ("KS_USERNAME_FORMYSQL" in process.env === false) {
+                console.log("KS_USERNAME_FORMYSQL not found in .env file");
+                return await false;
+            };
+
+            if ("KS_HOST_FORMYSQL" in process.env === false) {
+                console.log("KS_HOST_FORMYSQL not found in .env file");
+                return await false;
+            };
+
+            sequelize = new Sequelize(Configjson.sequelizeConfig.DbName,
+                process.env.KS_USERNAME_FORMYSQL,
+                process.env.KS_PASSWORD_FORMYSQL,
+                {
+                    host: process.env.KS_HOST_FORMYSQL,
+                    dialect: 'mysql'
+                });
+
+            return await sequelize;
+        };
+
+        if (CommonsequelizeConfig.isPostgres) {
+            if ("KS_PASSWORD_FORPOSTGRES" in process.env === false) {
+                console.log("KS_PASSWORD_FORPOSTGRES not found in .env file");
+                return await false;
+            };
+
+            if ("KS_USERNAME_FORPOSTGRES" in process.env === false) {
+                console.log("KS_USERNAME_FORPOSTGRES not found in .env file");
+                return await false;
+            };
+
+            if ("KS_HOST_FORPOSTGRES" in process.env === false) {
+                console.log("KS_HOST_FORPOSTGRES not found in .env file");
+                return await false;
+            };
+
+            sequelize = new Sequelize(Configjson.sequelizeConfig.DbName,
+                process.env.KS_USERNAME_FORPOSTGRES,
+                process.env.KS_PASSWORD_FORPOSTGRES,
+                {
+                    host: process.env.KS_HOST_FORPOSTGRES,
+                    dialect: 'postgres'
+                });
+
+            return await sequelize;
+        };
+
+        sequelize = new Sequelize({
+            dialect: 'sqlite',
+            logging: false,
+            storage: `${commonJonPth}/${commonDataPk}/${commonDbName}` // You can specify the path for your SQLite database file
+        });
+    } catch (error) {
+        console.log(`error from sequelize : ${process.cwd()}`);
+        return await { KTF: false, KReason: error, ErrorFrom: process.cwd() };
+    };
+
+    return await sequelize;
+};
 export { StartFunc };

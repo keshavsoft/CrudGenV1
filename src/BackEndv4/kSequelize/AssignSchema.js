@@ -9,7 +9,7 @@ let StartFunc = async () => {
 
     ConfigJson.jsonConfig.tableAndColumns.children.forEach(element => {
         for (const property in element.fileData) {
-            if (element.fileData[property].type === "STRING") {
+            if (["STRING", "TELEPHONE"].includes(element.fileData[property].type)) {
                 element.fileData[property].type = DataTypes.STRING;
             };
 
@@ -21,7 +21,7 @@ let StartFunc = async () => {
                 element.fileData[property].type = DataTypes.INTEGER;
             };
 
-            if (element.fileData[property].type === "DATE") {
+            if (["DATE", "DATEONLY"].includes(element.fileData[property].type)) {
                 element.fileData[property].type = DataTypes.DATE;
             };
         };
