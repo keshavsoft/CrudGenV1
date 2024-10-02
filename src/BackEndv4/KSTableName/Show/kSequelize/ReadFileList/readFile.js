@@ -1,6 +1,10 @@
 import { StartFunc as StartFuncInitializeSequelizeWithTableName } from '../modals/initializeSequelizeWithTableName.js';
 
 let StartFunc = async () => {
+    let LocalReturnObject = {};
+    LocalReturnObject.KTF = false;
+    LocalReturnObject.JsonData = [];
+
     try {
         const LocalTableData = await StartFuncInitializeSequelizeWithTableName();
 
@@ -10,7 +14,10 @@ let StartFunc = async () => {
             return result.dataValues;
         });
 
-        return await records;
+        LocalReturnObject.KTF = true;
+        LocalReturnObject.JsonData = records;
+
+        return await LocalReturnObject;
     } catch (error) {
         return await {
             KTF: false,
