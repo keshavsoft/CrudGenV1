@@ -6,5 +6,9 @@
     "Description": {
         "type": "STRING",
         "allowNull": true
+    },
+    "FactoryName": {
+        "type": "STRING",
+        "allowNull": true
     }
 }
