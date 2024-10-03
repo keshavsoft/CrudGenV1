@@ -1,6 +1,6 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
-import { StartFunc as BranchDc } from '../CommonFuncs/BranchDc.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
+import { StartFunc as WashingDC } from '../CommonFuncs/WashingDC.js';
 
 let StartFunc = ({ inFactory, inId }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -9,18 +9,18 @@ let StartFunc = ({ inFactory, inId }) => {
     const Qrdb = QrCodes();
     Qrdb.read();
 
-    const BranchDcdb = BranchDc();
-    BranchDcdb.read();
+    const WashingDCdb = WashingDC();
+    WashingDCdb.read();
 
-    const EntryScandb = EntryScan();
-    EntryScandb.read();
+    const WashingScandb = WashingScan();
+    WashingScandb.read();
 
 
-    let LocalFilterBranchDC = BranchDcdb.data.filter(e => e.pk == LocalId);
+    let LocalFilterBranchDC = WashingDCdb.data.filter(e => e.pk == LocalId);
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
 
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactorySelected === LocalFactory);
+    let LocalFilterEntryScan = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let LocalEntryScanAndDcMergeData = LoclaEntryScanAndDcMergeFunc({ inEntryScan: LocalFilterEntryScan, inBranchDc: LocalFilterBranchDC });
 

@@ -22,6 +22,8 @@ cd ..\FRONTENDMAZERVITE
 
 call npm run FromBranchVoucher
 call npm run FromBranchQrCodes
+call npm run FromEntryVoucher
+call npm run FromEntryQrCodes
 
 xcopy .\publicDir ..\CrudGenV1\public\Factory /h /i /c /k /e /r /y
 
