@@ -4,12 +4,12 @@ import Configjson from '../../../../../../../Config.json' assert { type: 'json' 
 
 // import tableNameJson from '../../../tableName.json' assert { type: 'json' };
 
-let StartFunc = () => {
+let StartFunc = ({ inTableName }) => {
     let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
 
     LocalReturnData.KTF = false;
 
-    LocalReturnData.UserDataFilePath = `${Configjson.jsonConfig.DataPath}/${Configjson.jsonConfig.DataPk}/${tableNameJson.tableName}`;
+    LocalReturnData.UserDataFilePath = `${Configjson.jsonConfig.DataPath}/${Configjson.jsonConfig.DataPk}/${inTableName}`;
 
     const defaultData = { error: "From KLowDb" }
 
@@ -17,17 +17,17 @@ let StartFunc = () => {
 
     return {
         dbObject: db,
-        TableSchema: LocalFuncForTableSchema()
+        TableSchema: LocalFuncForTableSchema({ inTableName })
     };
 };
 
-let LocalFuncForTableSchema = () => {
+let LocalFuncForTableSchema = ({ inTableName }) => {
     let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
 
     LocalReturnData.KTF = false;
 
     let LocalSecondNeeded = Configjson.jsonConfig.tableAndColumns.children.find(element => {
-        return "children" in element === false && element.name === tableNameJson.tableName;
+        return "children" in element === false && element.name === inTableName;
     });
 
     return LocalSecondNeeded;

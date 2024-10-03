@@ -1,4 +1,4 @@
-import { StartFunc as StartFuncCommonFuncs } from '../../../CommonFuncs/BranchScan.js';
+import { StartFunc as StartFuncCommonFuncs } from '../../../CommonFuncs/EntryScan.js';
 
 const StartFunc = ({ inTable, inDc, inQrCodeId }) => {
     let LocalFactoryName = inTable;
@@ -18,14 +18,7 @@ const StartFunc = ({ inTable, inDc, inQrCodeId }) => {
         return LocalReturnData;
     };
 
-    let LocalRowNeeded = dbForQrCodes.JsonData.find(e => e.VoucherRef == LocalDc);
-
-    if (LocalRowNeeded === undefined) {
-        LocalReturnData.KReason = `Not this Dc :${LocalDc}`
-        return LocalReturnData;
-    };
-
-    let LocalFactoryCheck = dbForQrCodes.JsonData.find(e => e.DCFactory == LocalFactoryName);
+    let LocalFactoryCheck = dbForQrCodes.JsonData.find(e => e.FactoryName == LocalFactoryName);
 
     if (LocalFactoryCheck === undefined) {
         LocalReturnData.KReason = `Not this Factory :${LocalFactoryName}`
