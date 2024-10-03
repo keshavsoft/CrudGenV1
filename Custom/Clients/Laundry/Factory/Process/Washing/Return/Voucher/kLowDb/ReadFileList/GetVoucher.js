@@ -1,19 +1,19 @@
-import { StartFunc as EntryCancelDc } from '../CommonFuncs/EntryCancelDc.js';
-import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
+import { StartFunc as WashingCancelDC } from '../CommonFuncs/WashingCancelDC.js';
+import { StartFunc as WashingCancelScan } from '../CommonFuncs/WashingCancelScan.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
     let LocalFactory = inFactory;
 
-    const BranchDcdb = EntryCancelDc();
-    BranchDcdb.read();
+    const WashingCancelDCdb = WashingCancelDC();
+    WashingCancelDCdb.read();
 
-    const EntryScandb = EntryCancelScan();
-    EntryScandb.read();
+    const WashingCancelScandb = WashingCancelScan();
+    WashingCancelScandb.read();
 
-    let LocalFilterBranchDc = BranchDcdb.data.filter(e => e.FactoryName === LocalFactory);
+    let LocalFilterBranchDc = WashingCancelDCdb.data.filter(e => e.FactoryName === LocalFactory);
 
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
+    let LocalFilterEntryScan = WashingCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inBranchDc: LocalFilterBranchDc,
