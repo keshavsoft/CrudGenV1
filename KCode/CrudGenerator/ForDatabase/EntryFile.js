@@ -5,6 +5,9 @@ import ConfigJson from '../../Config.json' assert {type: 'json'};
 import fs from "fs";
 import path from "path";
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 let StartFunc = ({ inFilesArray, inFrom }) => {
     LocalFuncCreateFolder();
     LocalFuncCreateTableAsFolder({ inTablesCollection: inFilesArray });
@@ -23,8 +26,8 @@ let StartFunc = ({ inFilesArray, inFrom }) => {
 
 let LocalFuncCreateFolder = () => {
     try {
-        if (fs.existsSync(`${ConfigJson.ToDataDetails.DataPath}/${ConfigJson.ToDataDetails.DataPk}`) === false) {
-            fs.mkdirSync(`${ConfigJson.ToDataDetails.DataPath}/${ConfigJson.ToDataDetails.DataPk}`, { recursive: true });
+        if (fs.existsSync(`${ConfigJson.ToDataDetails.DataPath}/${process.env.DataPk}`) === false) {
+            fs.mkdirSync(`${ConfigJson.ToDataDetails.DataPath}/${process.env.DataPk}`, { recursive: true });
         };
     } catch (error) {
         console.log("error  : ", error);
