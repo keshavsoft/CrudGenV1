@@ -1,5 +1,5 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as BranchScan } from '../CommonFuncs/BranchScan.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
 import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
 import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
 
@@ -10,20 +10,20 @@ let StartFunc = ({ inFactory }) => {
     const Qrdb = QrCodes();
     Qrdb.read();
 
-    const BranchScandb = BranchScan();
+    const EntryScandb = EntryScan();
     BranchScandb.read();
 
-    const EntryScandb = EntryScan();
-    EntryScandb.read();
+    const WashingScandb = WashingScan();
+    WashingScandb.read();
 
     const EntryCancelScandb = EntryCancelScan();
     EntryCancelScandb.read();
 
-    let LocalFilterBranchScan = BranchScandb.data.filter(e => e.DCFactory === LocalFactory);
+    let LocalFilterBranchScan = EntryScandb.data.filter(e => e.DCFactory === LocalFactory);
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
 
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.DCFactory === LocalFactory);
+    let LocalFilterEntryScan = WashingScandb.data.filter(e => e.DCFactory === LocalFactory);
     let LocalFilterCancelScan = EntryCancelScandb.data.filter(e => e.FactorySelected === LocalFactory);
 
 

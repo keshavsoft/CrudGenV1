@@ -39,7 +39,7 @@ let jFLocalDateWiseCheckCount = ({ inFactoryData, inWashingData }) => {
     const groupedData = {};
 
     data1.forEach(item => {
-        const date = item.DateTime.split('T')[0];
+        const date = item.DateTime?.split('T')[0];
         if (!groupedData[date]) {
             groupedData[date] = {
                 Date: date,
@@ -51,7 +51,7 @@ let jFLocalDateWiseCheckCount = ({ inFactoryData, inWashingData }) => {
     });
 
     data2.forEach(item => {
-        const date = item.DateTime.split('T')[0];
+        const date = item.DateTime?.split('T')[0];
         if (!groupedData[date]) {
             groupedData[date] = {
                 Date: date,
