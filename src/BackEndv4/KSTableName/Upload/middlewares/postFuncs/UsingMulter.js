@@ -1,9 +1,8 @@
 import multer from 'multer';
-import ConfigJson from '../../../../Config.json' assert {type: 'json'};
+import path from "path";
 
-import {
-    PostFunc as PostFuncRepo
-} from '../../repos/postFuncs/EntryFile.js';
+import ConfigJson from '../../../../Config.json' assert {type: 'json'};
+import acceptFileTypesJson from './acceptFileTypes.json' assert {type: 'json'};
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -24,40 +23,17 @@ var storage = multer.diskStorage({
         req.KeshavSoft = {};
         let LocalUuid = uuidv4();
 
-        switch (LocalFile.mimetype) {
-            case "image/png":
-                req.KeshavSoft.Uuid = `${LocalUuid}.png`
-                cb(null, `${LocalUuid}.png`);
-                break;
-            case "application/pdf":
-                req.KeshavSoft.Uuid = `${LocalUuid}.pdf`;
-                cb(null, `${LocalUuid}.pdf`);
-                break;
-            default:
-                cb(null, LocalFile.originalname);
-                break;
+        if (acceptFileTypesJson.includes(LocalFile.mimetype)) {
+            let LocalExtensionType = path.parse(LocalFile.originalname).ext;
+
+            req.KeshavSoft.Uuid = `${LocalUuid}.${LocalExtensionType}`;
+
+            cb(null, `${LocalUuid}.${LocalExtensionType}`);
+        } else {
+            cb(null, LocalFile.originalname);
         };
     }
 });
-
-let LocalFuncSaveData = async (req) => {
-    let LocalBody = req.body;
-    let LocalReturnData = {};
-    LocalReturnData.KTF = false;
-
-    // let LocalModalObject = new ClassSample({ ...LocalBody });
-
-    let LocalFromRepo = await PostFuncRepo({ ...LocalBody });
-
-    if (LocalFromRepo.KTF === false) {
-        req.KeshavSoft.ErrorInfo = LocalFromRepo.ErrorInfo;
-
-        return await LocalReturnData;
-    };
-    LocalReturnData.KTF = true;
-
-    return await LocalReturnData;
-};
 
 var StartFunc = multer({ storage: storage });
 
