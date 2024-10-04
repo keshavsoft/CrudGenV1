@@ -3,6 +3,7 @@ import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
 import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
 import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
 import { StartFunc as WashingCancelScan } from '../CommonFuncs/WashingCancelScan.js';
+import { StartFunc as ReWashScan } from '../CommonFuncs/ReWashScan.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -17,6 +18,9 @@ let StartFunc = ({ inFactory }) => {
     const WashingScandb = WashingScan();
     WashingScandb.read();
 
+    const ReWashScandb = ReWashScan();
+    ReWashScandb.read();
+
     const EntryCancelScandb = EntryCancelScan();
     EntryCancelScandb.read();
 
@@ -29,9 +33,10 @@ let StartFunc = ({ inFactory }) => {
     let LocalFilterEntryScanData = LocalFilterBranchScan.filter(loopQr =>
         !LocalFilterCancelScan.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
     );
+    let LocalFilterReWashScan = ReWashScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let LocalFilterWashingCancelScan = WashingCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
-    
+
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
 
@@ -42,19 +47,21 @@ let StartFunc = ({ inFactory }) => {
         inQrData: LocalFilterQr,
         inScandata: LocalFilterEntryScanData,
         inEntryScan: LocalFilterEntryScan,
-        inEntryCancelScan: LocalFilterWashingCancelScan
+        inEntryCancelScan: LocalFilterWashingCancelScan,
+        inReWashScan: LocalFilterReWashScan
     });
     let LocalArrayReverseData = jVarLocalTransformedData.slice().reverse();
 
     return LocalArrayReverseData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan, inReWashScan }) => {
 
     let jVarLocalReturnObject = inScandata.map(loopScan => {
         const matchedRecord = inQrData.find(loopQr => loopQr.pk == loopScan.QrCodeId);
         const match = inEntryScan.some(loopEntryScan => loopEntryScan.QrCodeId == loopScan.QrCodeId);
         const CheckEntryReturn = inEntryCancelScan.some(loopEntryReturnScan => loopEntryReturnScan.QrCodeId == loopScan.QrCodeId);
+        const matchReWashScan = inReWashScan.some(loopReWashScan => loopReWashScan.QrCodeId == loopScan.QrCodeId);
 
         return {
             OrderNumber: matchedRecord?.GenerateReference.ReferncePk,
@@ -63,12 +70,14 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan }
             ItemName: matchedRecord?.ItemName,
             Rate: matchedRecord?.Rate,
 
-            VoucherNumber: loopScan?.VoucherNumber,
+            // VoucherNumber: matchedWashingDc?.VoucherNumber,
+            // DCDate: new Date(matchedWashingDc?.Date).toLocaleDateString('en-GB'),
+
             QrCodeId: loopScan.QrCodeId,
-            DCDate: new Date(loopScan?.DCDate).toLocaleDateString('en-GB'),
             BranchName: loopScan?.BranchName,
             Status: match,
             EntryReturnStarus: CheckEntryReturn,
+            ReWashStatus: matchReWashScan,
             TimeSpan: TimeSpan({ DateTime: loopScan.DateTime })
         };
     }).filter(record => record.MatchedRecord !== null);

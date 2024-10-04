@@ -1,7 +1,9 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as BranchScan } from '../CommonFuncs/BranchScan.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
 import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
 import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
+import { StartFunc as WashingDC } from '../CommonFuncs/WashingDC.js';
+import { StartFunc as ReWashScan } from '../CommonFuncs/ReWashScan.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -10,8 +12,8 @@ let StartFunc = ({ inFactory }) => {
     const Qrdb = QrCodes();
     Qrdb.read();
 
-    const BranchScandb = BranchScan();
-    BranchScandb.read();
+    const WashingScandb = WashingScan();
+    WashingScandb.read();
 
     const EntryScandb = EntryScan();
     EntryScandb.read();
@@ -19,19 +21,33 @@ let StartFunc = ({ inFactory }) => {
     const EntryCancelScandb = EntryCancelScan();
     EntryCancelScandb.read();
 
-    let LocalFilterBranchScan = BranchScandb.data.filter(e => e.DCFactory === LocalFactory);
+    const WashingDCdb = WashingDC();
+    WashingDCdb.read();
+
+    const ReWashScandb = ReWashScan();
+    ReWashScandb.read();
+
+    let LocalFilterWashingScan = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
-
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.DCFactory === LocalFactory);
+    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
     let LocalFilterCancelScan = EntryCancelScandb.data.filter(e => e.FactorySelected === LocalFactory);
+    let LocalFilterWashingDC = WashingDCdb.data.filter(e => e.FactoryName === LocalFactory);
+    let LocalFilterReWashingScan = ReWashScandb.data.filter(e => e.FactoryName === LocalFactory);
+
+    let LocalFilterEntryScanData = LocalFilterEntryScan.filter(loopQr =>
+        !LocalFilterCancelScan.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
+    );
+
 
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inQrData: LocalFilterQr,
-        inScandata: LocalFilterBranchScan,
-        inEntryScan: LocalFilterEntryScan,
-        inEntryCancelScan: LocalFilterCancelScan
+        inScandata: LocalFilterWashingScan,
+        inEntryScan: LocalFilterEntryScanData,
+        inEntryCancelScan: LocalFilterCancelScan,
+        inWashingDC: LocalFilterWashingDC,
+        inRewashScan: LocalFilterReWashingScan
 
     });
     let localReturnData = getmatchedRecords({ inFromQrData: jVarLocalTransformedData, inEntryScan: LocalFilterEntryScan })
@@ -41,11 +57,13 @@ let StartFunc = ({ inFactory }) => {
     return LocalArrayReverseData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan, inWashingDC, inRewashScan }) => {
     let jVarLocalReturnObject = inScandata.map(loopScan => {
         const matchedRecord = inQrData.find(loopQr => loopQr.pk == loopScan.QrCodeId);
         const match = inEntryScan.some(loopEntryScan => loopEntryScan.QrCodeId == loopScan.QrCodeId);
         const CheckEntryReturn = inEntryCancelScan.some(loopEntryReturnScan => loopEntryReturnScan.QrCodeId == loopScan.QrCodeId);
+        const matchedWashingDC = inWashingDC.find(loopDC => loopDC.pk == loopScan.VoucherRef);
+        const matchRewashScan = inRewashScan.some(loopReWashScan => loopReWashScan.QrCodeId == loopScan.QrCodeId);
 
         return {
             OrderNumber: matchedRecord?.GenerateReference.ReferncePk,
@@ -54,12 +72,14 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan }
             ItemName: matchedRecord?.ItemName,
             Rate: matchedRecord?.Rate,
 
-            VoucherNumber: loopScan?.VoucherNumber,
+            VoucherNumber: matchedWashingDC?.pk,
+            DCDate: new Date(matchedWashingDC?.Date).toLocaleDateString('en-GB'),
+
             QrCodeId: loopScan.QrCodeId,
-            DCDate: new Date(loopScan?.DCDate).toLocaleDateString('en-GB'),
-            BranchName: loopScan?.BranchName,
+            BranchName: matchedRecord?.BookingData.OrderData.BranchName,
             Status: match,
             EntryReturnStarus: CheckEntryReturn,
+            ReWashStatus: matchRewashScan,
             TimeSpan: TimeSpan({ DateTime: loopScan.DateTime })
         };
     }).filter(record => record.MatchedRecord !== null);

@@ -20,10 +20,10 @@ let StartFunc = ({ inFactory }) => {
 
     let LocalFilterEntryCancelScan = EntryCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
 
-    let LocalFilrerEntryReturnData = LocalFilterEntryScan.map(loop =>
-        LocalFilterEntryCancelScan.filter(element => loop.QrCodeId !== element.QrCodeId)
+    let LocalFilrerEntryReturnData = LocalFilterEntryScan.filter(loop =>
+        !LocalFilterEntryCancelScan.some(element => element.QrCodeId === loop.QrCodeId)
     );
-    let LocalFilterWashingSan = WashingScandb.data.filter(e => e.DCFactory === LocalFactory);
+    let LocalFilterWashingSan = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let jVarLocalTransformedData = jFLocalDateWiseCheckCount({ inFactoryData: LocalFilrerEntryReturnData, inWashingData: LocalFilterWashingSan });
     let LocalArrayReverseData = jVarLocalTransformedData.slice().reverse();
@@ -39,7 +39,8 @@ let jFLocalDateWiseCheckCount = ({ inFactoryData, inWashingData }) => {
     const groupedData = {};
 
     data1.forEach(item => {
-        const date = item.DateTime?.split('T')[0];
+        // const date = item.DateTime?.split('T')[0];
+        const date = new Date(item.DateTime).toLocaleDateString('en-GB');
         if (!groupedData[date]) {
             groupedData[date] = {
                 Date: date,
@@ -51,7 +52,9 @@ let jFLocalDateWiseCheckCount = ({ inFactoryData, inWashingData }) => {
     });
 
     data2.forEach(item => {
-        const date = item.DateTime?.split('T')[0];
+        // const date = item.DateTime?.split('T')[0];
+        const date = new Date(item.DateTime).toLocaleDateString('en-GB');
+
         if (!groupedData[date]) {
             groupedData[date] = {
                 Date: date,
