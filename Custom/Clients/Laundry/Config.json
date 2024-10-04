@@ -870,10 +870,6 @@
                         "QrCodeId": {
                             "type": "INTEGER",
                             "unique": true,
-                            "references": {
-                                "model": "WashingScan",
-                                "key": "QrCodeId"
-                            },
                             "allowNull": false,
                             "onUpdate": "cascade",
                             "onDelete": "cascade"
