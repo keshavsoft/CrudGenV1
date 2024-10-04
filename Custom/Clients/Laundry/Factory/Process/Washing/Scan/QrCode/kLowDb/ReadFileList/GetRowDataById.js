@@ -61,7 +61,8 @@ const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
 
     let LocalMapData = inEntryScan.map(element => {
 
-        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherNumber)
+        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherRef);
+
         return { ...locaFindData, ...element }
     });
     return LocalMapData;

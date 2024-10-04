@@ -1,5 +1,5 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
 
 let StartFunc = ({ inId }) => {
     let LocalId = inId;
@@ -8,10 +8,10 @@ let StartFunc = ({ inId }) => {
     const Qrdb = QrCodes();
     Qrdb.read();
 
-    const EntryScandb = EntryScan();
-    EntryScandb.read();
+    const WashingScandb = WashingScan();
+    WashingScandb.read();
 
-    let LocalBranchScanFilter = EntryScandb.data.find(e => e.QrCodeId == LocalId);
+    let LocalBranchScanFilter = WashingScandb.data.find(e => e.QrCodeId == LocalId);
 
     if (LocalBranchScanFilter === undefined) {
         LocalReturnData.KReason = "No data"
