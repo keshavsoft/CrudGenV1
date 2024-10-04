@@ -9,7 +9,7 @@
         "DataSchemaLocation": "KCode/DataSchema"
     },
     "sequelizeConfig": {
-        "isMysql": true,
+        "isMysql": false,
         "isPostgres": false,
         "DbName": "data"
     },
