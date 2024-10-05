@@ -1,8 +1,6 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
-import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
-import { StartFunc as WashingCancelScan } from '../CommonFuncs/WashingCancelScan.js';
+import { StartFunc as ReWashScan } from '../CommonFuncs/ReWashScan.js';
+import { StartFunc as ReWashDC } from '../CommonFuncs/ReWashDC.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -11,50 +9,32 @@ let StartFunc = ({ inFactory }) => {
     const Qrdb = QrCodes();
     Qrdb.read();
 
-    const EntryScandb = EntryScan();
-    EntryScandb.read();
+    const ReWashDCdb = ReWashDC();
+    ReWashDCdb.read();
 
-    const WashingScandb = WashingScan();
-    WashingScandb.read();
+    const ReWashScandb = ReWashScan();
+    ReWashScandb.read();
 
-    const EntryCancelScandb = EntryCancelScan();
-    EntryCancelScandb.read();
 
-    const WashingCancelScandb = WashingCancelScan();
-    WashingCancelScandb.read();
-
-    let LocalFilterBranchScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
-    let LocalFilterCancelScan = EntryCancelScandb.data.filter(e => e.FactorySelected === LocalFactory);
-
-    let LocalFilterEntryScanData = LocalFilterBranchScan.filter(loopQr =>
-        !LocalFilterCancelScan.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
-    );
-
-    let LocalFilterWashingCancelScan = WashingCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
-    
-
+    let LocalFilterReWashDC = ReWashDCdb.data.filter(e => e.FactoryName === LocalFactory);
+    let LocalFilterReWashScan = ReWashScandb.data.filter(e => e.FactoryName === LocalFactory);
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
-
-    let LocalFilterEntryScan = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
-
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inQrData: LocalFilterQr,
-        inScandata: LocalFilterEntryScanData,
-        inEntryScan: LocalFilterEntryScan,
-        inEntryCancelScan: LocalFilterWashingCancelScan
+        inScandata: LocalFilterReWashScan,
+        inReWashDC: LocalFilterReWashDC,
     });
     let LocalArrayReverseData = jVarLocalTransformedData.slice().reverse();
 
     return LocalArrayReverseData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inReWashDC }) => {
 
     let jVarLocalReturnObject = inScandata.map(loopScan => {
         const matchedRecord = inQrData.find(loopQr => loopQr.pk == loopScan.QrCodeId);
-        const match = inEntryScan.some(loopEntryScan => loopEntryScan.QrCodeId == loopScan.QrCodeId);
-        const CheckEntryReturn = inEntryCancelScan.some(loopEntryReturnScan => loopEntryReturnScan.QrCodeId == loopScan.QrCodeId);
+        const matchedReWashDC = inReWashDC.find(loopDC => loopDC.pk == loopScan.QrCodeId);
 
         return {
             OrderNumber: matchedRecord?.GenerateReference.ReferncePk,
@@ -62,13 +42,11 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan }
             DeliveryDate: new Date(matchedRecord?.DeliveryDateTime).toLocaleDateString('en-GB'),
             ItemName: matchedRecord?.ItemName,
             Rate: matchedRecord?.Rate,
+            BranchName: matchedRecord?.BookingData.OrderData.BranchName,
 
-            VoucherNumber: loopScan?.VoucherNumber,
+            VoucherNumber: matchedReWashDC?.VoucherRef,
             QrCodeId: loopScan.QrCodeId,
-            DCDate: new Date(loopScan?.DCDate).toLocaleDateString('en-GB'),
-            BranchName: loopScan?.BranchName,
-            Status: match,
-            EntryReturnStarus: CheckEntryReturn,
+            DCDate: new Date(matchedReWashDC?.Date).toLocaleDateString('en-GB'),
             TimeSpan: TimeSpan({ DateTime: loopScan.DateTime })
         };
     }).filter(record => record.MatchedRecord !== null);

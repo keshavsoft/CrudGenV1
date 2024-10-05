@@ -1,6 +1,6 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
-import { StartFunc as WashingDC } from '../CommonFuncs/WashingDC.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/ReWashScan.js';
+import { StartFunc as WashingDC } from '../CommonFuncs/ReWashDC.js';
 
 let StartFunc = ({ inFactory, inId }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -58,13 +58,15 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
 };
 
 const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
-
-    let LocalMapData = inEntryScan.map(element => {
-
+    let LocalArray = [];
+    inEntryScan.forEach(element => {
         let locaFindData = inBranchDc.find(e => e.pk == element.VoucherNumber)
-        return { ...locaFindData, ...element }
+        if (locaFindData !== undefined) {
+            let LocalMergeData = { ...locaFindData, ...element }
+            LocalArray.push(LocalMergeData)
+        };
     });
-    return LocalMapData;
+    return LocalArray;
 };
 
 function TimeSpan({ DateTime }) {
