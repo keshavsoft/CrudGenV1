@@ -2,14 +2,14 @@
     "isSequelize": false,
     "isMongoDb": false,
     "jsonConfig": {
-        "DataPk": 336,
+        "DataPk": "318",
         "DataPath": "KData/JSON",
         "tableAndColumns": {
-            "path": "KCode/DataSchema/336",
-            "name": "336",
+            "path": "KCode/DataSchema/318",
+            "name": "318",
             "children": [
                 {
-                    "path": "KCode\\DataSchema\\336\\ANR.json",
+                    "path": "KCode\\DataSchema\\318\\ANR.json",
                     "name": "ANR.json",
                     "fileData": {
                         "ItemInOrder": {
@@ -46,7 +46,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\BranchDC.json",
+                    "path": "KCode\\DataSchema\\318\\BranchDC.json",
                     "name": "BranchDC.json",
                     "fileData": {
                         "Date": {
@@ -68,7 +68,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\BranchScan.json",
+                    "path": "KCode\\DataSchema\\318\\BranchScan.json",
                     "name": "BranchScan.json",
                     "fileData": {
                         "QrCodeId": {
@@ -129,7 +129,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\CompletionDC.json",
+                    "path": "KCode\\DataSchema\\318\\CompletionDC.json",
                     "name": "CompletionDC.json",
                     "fileData": {
                         "Date": {
@@ -143,7 +143,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\CompletionScan.json",
+                    "path": "KCode\\DataSchema\\318\\CompletionScan.json",
                     "name": "CompletionScan.json",
                     "fileData": {
                         "QrCodeId": {
@@ -208,39 +208,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\CSO.json",
-                    "name": "CSO.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\EntryCancelDc.json",
+                    "path": "KCode\\DataSchema\\318\\EntryCancelDc.json",
                     "name": "EntryCancelDc.json",
                     "fileData": {
                         "Date": {
@@ -254,7 +222,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\EntryCancelScan.json",
+                    "path": "KCode\\DataSchema\\318\\EntryCancelScan.json",
                     "name": "EntryCancelScan.json",
                     "fileData": {
                         "QrCodeId": {
@@ -315,7 +283,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\EntryScan.json",
+                    "path": "KCode\\DataSchema\\318\\EntryScan.json",
                     "name": "EntryScan.json",
                     "fileData": {
                         "QrCodeId": {
@@ -376,71 +344,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\GD.json",
-                    "name": "GD.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\GWK.json",
-                    "name": "GWK.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\KKD.json",
+                    "path": "KCode\\DataSchema\\318\\KKD.json",
                     "name": "KKD.json",
                     "fileData": {
                         "ItemInOrder": {
@@ -472,71 +376,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\KPA.json",
-                    "name": "KPA.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\LBC.json",
-                    "name": "LBC.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\MastersAddOns.json",
+                    "path": "KCode\\DataSchema\\318\\MastersAddOns.json",
                     "name": "MastersAddOns.json",
                     "fileData": {
                         "AddOnService": {
@@ -551,7 +391,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\MastersCustomers.json",
+                    "path": "KCode\\DataSchema\\318\\MastersCustomers.json",
                     "name": "MastersCustomers.json",
                     "fileData": {
                         "CustomerName": {
@@ -590,7 +430,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\MastersItems.json",
+                    "path": "KCode\\DataSchema\\318\\MastersItems.json",
                     "name": "MastersItems.json",
                     "fileData": {
                         "Category": {
@@ -617,135 +457,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\MSNvzm.json",
-                    "name": "MSNvzm.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\MVP.json",
-                    "name": "MVP.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\NGGOS.json",
-                    "name": "NGGOS.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\PBS.json",
-                    "name": "PBS.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\QrCodes.json",
+                    "path": "KCode\\DataSchema\\318\\QrCodes.json",
                     "name": "QrCodes.json",
                     "fileData": {
                         "GenerateReference": {
@@ -800,76 +512,16 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\RandB.json",
-                    "name": "RandB.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\RandBVzm.json",
-                    "name": "RandBVzm.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\ReWashScan.json",
+                    "path": "KCode\\DataSchema\\318\\ReWashScan.json",
                     "name": "ReWashScan.json",
                     "fileData": {
                         "QrCodeId": {
                             "type": "INTEGER",
                             "unique": true,
+                            "references": {
+                                "model": "WashingScan",
+                                "key": "QrCodeId"
+                            },
                             "allowNull": false,
                             "onUpdate": "cascade",
                             "onDelete": "cascade"
@@ -925,7 +577,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\SP.json",
+                    "path": "KCode\\DataSchema\\318\\SP.json",
                     "name": "SP.json",
                     "fileData": {
                         "ItemInOrder": {
@@ -957,7 +609,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\TransOrdersKakinada.json",
+                    "path": "KCode\\DataSchema\\318\\TransOrdersKakinada.json",
                     "name": "TransOrdersKakinada.json",
                     "fileData": {
                         "ItemInOrder": {
@@ -989,103 +641,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\VG.json",
-                    "name": "VG.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\VUDA.json",
-                    "name": "VUDA.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\VZM.json",
-                    "name": "VZM.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\WashingCancelScan.json",
+                    "path": "KCode\\DataSchema\\318\\WashingCancelScan.json",
                     "name": "WashingCancelScan.json",
                     "fileData": {
                         "QrCodeId": {
@@ -1150,7 +706,7 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\WashingDC.json",
+                    "path": "KCode\\DataSchema\\318\\WashingDC.json",
                     "name": "WashingDC.json",
                     "fileData": {
                         "Date": {
@@ -1164,12 +720,16 @@
                     }
                 },
                 {
-                    "path": "KCode\\DataSchema\\336\\WashingScan.json",
+                    "path": "KCode\\DataSchema\\318\\WashingScan.json",
                     "name": "WashingScan.json",
                     "fileData": {
                         "QrCodeId": {
                             "type": "INTEGER",
                             "unique": true,
+                            "references": {
+                                "model": "EntryScan",
+                                "key": "QrCodeId"
+                            },
                             "allowNull": false,
                             "onUpdate": "cascade",
                             "onDelete": "cascade"
@@ -1223,42 +783,9 @@
                             "allowNull": true
                         }
                     }
-                },
-                {
-                    "path": "KCode\\DataSchema\\336\\YD.json",
-                    "name": "YD.json",
-                    "fileData": {
-                        "ItemInOrder": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "CustomerData": {
-                            "type": "OBJECT",
-                            "allowNull": true
-                        },
-                        "OrderData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {
-                                "BranchName": "",
-                                "Currentdateandtime": ""
-                            }
-                        },
-                        "AddOn": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        },
-                        "CheckOutData": {
-                            "type": "OBJECT",
-                            "allowNull": true,
-                            "defaultValue": {}
-                        }
-                    }
                 }
             ]
-        },
-        "LoginPath": "KData/JSONForLogin"
+        }
     },
     "sequelizeConfig": {
         "isMysql": true,
@@ -1272,5 +799,5 @@
         "DbName": "sdata",
         "collectionName": "scoll"
     },
-    "JsonPath": "KData/JSON/336"
+    "JsonPath": "KData/JSON/318"
 }
