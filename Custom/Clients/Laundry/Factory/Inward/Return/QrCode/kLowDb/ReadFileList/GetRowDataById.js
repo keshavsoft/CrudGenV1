@@ -59,13 +59,15 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
 };
 
 const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
-
-    let LocalMapData = inEntryScan.map(element => {
-
+    let LocalArray = [];
+    inEntryScan.forEach(element => {
         let locaFindData = inBranchDc.find(e => e.pk == element.VoucherNumber)
-        return { ...locaFindData, ...element }
+        if (locaFindData !== undefined) {
+            let LocalMergeData = { ...locaFindData, ...element }
+            LocalArray.push(LocalMergeData)
+        };
     });
-    return LocalMapData;
+    return LocalArray;
 };
 
 function TimeSpan({ DateTime }) {
