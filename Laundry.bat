@@ -13,8 +13,8 @@ call npm run BranchAll
 call npm run AllReports
 call npm run Today-QrCodes
 call npm run Today-Orders
-call npm run AdminToday-QrCodes
-call npm run AdminToday-Orders
+call npm run Admin-AdminToday-QrCodes
+call npm run Admin-AdminToday-Orders
 
 xcopy .\publicDir ..\CrudGenV1\public\Laundry /h /i /c /k /e /r /y
 
