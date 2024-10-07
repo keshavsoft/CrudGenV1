@@ -15,7 +15,7 @@ let StartFunc = () => {
         return false;
     };
 
-    return db;
+    return db.data;
 };
 
 export { StartFunc };

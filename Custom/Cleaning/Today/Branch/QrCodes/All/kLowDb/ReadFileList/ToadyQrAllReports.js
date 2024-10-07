@@ -10,17 +10,11 @@ let StartFunc = ({ inBranch }) => {
     let LocalBranchName = inBranch;
 
     const Qrdb = QrCodes();
-    Qrdb.read();
-
     const BranchScandb = BranchScan();
-
     const EntryScandb = EntryScan();
-    EntryScandb.read();
-
     const WashingScandb = WashingScan();
-    WashingScandb.read();
 
-    let LocalFilterQr = Qrdb.data.filter(e => {
+    let LocalFilterQr = Qrdb.filter(e => {
         return new Date(e.BookingData.OrderData.Currentdateandtime).toLocaleDateString('en-GB') == LocalFindValue && e.BookingData.OrderData.BranchName === LocalBranchName;
     });
 
@@ -28,11 +22,11 @@ let StartFunc = ({ inBranch }) => {
         return new Date(e.DateTime).toLocaleDateString('en-GB') == LocalFindValue && e.BranchName === LocalBranchName;
     });
 
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => {
+    let LocalFilterEntryScan = EntryScandb.filter(e => {
         return new Date(e.DateTime).toLocaleDateString('en-GB') == LocalFindValue && e.BranchName === LocalBranchName;
     });
 
-    let LocalFilterWashingScan = WashingScandb.data.filter(e => {
+    let LocalFilterWashingScan = WashingScandb.filter(e => {
         return new Date(e.DateTime).toLocaleDateString('en-GB') == LocalFindValue && e.BranchName === LocalBranchName;
     });
 
@@ -42,7 +36,7 @@ let StartFunc = ({ inBranch }) => {
         inEntryScandata: LocalFilterEntryScan,
         inWashingScandata: LocalFilterWashingScan
     });
-    
+
     let LocalArrayReverseData = jVarLocalTransformedData.slice().reverse();
 
     return LocalArrayReverseData;

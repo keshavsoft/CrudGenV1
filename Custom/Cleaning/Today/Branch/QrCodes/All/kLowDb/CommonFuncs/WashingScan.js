@@ -1,22 +1,7 @@
-import { LowSync } from 'lowdb'
-import { JSONFileSync } from 'lowdb/node'
-import Configjson from '../../../../../Config.json' assert { type: 'json' };
-let localTableName = "WashingScan.json"
+import { StartFunc as PullData } from "../../../../../../../../binV4/WashingScan/Show/kLowDb/PullData/returnAsArray.js";
 
 let StartFunc = () => {
-    let LocalDataPk = Configjson.jsonConfig.DataPk;
-
-    let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
-
-    LocalReturnData.KTF = false;
-
-    LocalReturnData.UserDataFilePath = `${Configjson.jsonConfig.DataPath}/${LocalDataPk}/${localTableName}`;
-
-    const defaultData = { error: "From KLowDb" }
-
-    const db = new LowSync(new JSONFileSync(LocalReturnData.UserDataFilePath), defaultData);
-
-    return db;
+    return PullData();
 };
 
 export { StartFunc };
