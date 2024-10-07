@@ -1,5 +1,6 @@
 import { StartFunc as QrCodes } from './QrCodes.js';
 import { StartFunc as BranchScan } from './BranchScan.js';
+import { StartFunc as BranchDc } from './BranchDc.js';
 
 let StartFunc = ({ inBranch }) => {
     let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -12,6 +13,9 @@ let StartFunc = ({ inBranch }) => {
     const BranchScandb = BranchScan();
     BranchScandb.read();
 
+    const BranchDcdb = BranchDc();
+    BranchDcdb.read();
+
     let LocalFilterQr = Qrdb.data.filter(e => {
         return new Date(e.BookingData.OrderData.Currentdateandtime).toLocaleDateString('en-GB') == LocalFindValue && e.BookingData.OrderData.BranchName === LocalBranchName;
     });
@@ -20,16 +24,20 @@ let StartFunc = ({ inBranch }) => {
         return new Date(e.DateTime).toLocaleDateString('en-GB') == LocalFindValue && e.BranchName === LocalBranchName;
     });
 
-    let jVarLocalTransformedData = jFLocalMergeFunc({ inQrData: LocalFilterQr, inScandata: LocalFilterBranchScan });
+    let LocalFilterBranchDc = BranchDcdb.data.filter(e => {
+        return new Date(e.DateTime).toLocaleDateString('en-GB') == LocalFindValue && e.BranchName === LocalBranchName;
+    });
+
+    let jVarLocalTransformedData = jFLocalMergeFunc({ inQrData: LocalFilterQr, inScandata: LocalFilterBranchScan, inBranchDC: LocalFilterBranchDc });
 
     return jVarLocalTransformedData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inBranchDC }) => {
 
     let jVarLocalReturnObject = inQrData.map(loopQr => {
         const match = inScandata.some(loopScan => loopScan.QrCodeId == loopQr.pk);
-        
+        let LoalBranchDCFindeData = inBranchDC.find(e => e.pk === loopQr.VoucherRef);
         return {
             QrCodeId: loopQr.pk,
             ItemName: loopQr.ItemName,
@@ -40,6 +48,8 @@ let jFLocalMergeFunc = ({ inQrData, inScandata }) => {
             location: loopQr.location,
             OrderDateTime: loopQr.BookingData.OrderData.Currentdateandtime,
             Status: match,
+            VocherNumber: LoalBranchDCFindeData?.pk,
+            VoucherDate: LoalBranchDCFindeData?.Date,
             TimeSpan: TimeSpan({ DateTime: loopQr.BookingData.OrderData.Currentdateandtime })
         };
     });
