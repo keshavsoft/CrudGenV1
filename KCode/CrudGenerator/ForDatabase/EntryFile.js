@@ -7,6 +7,7 @@ import path from "path";
 
 import dotenv from 'dotenv';
 dotenv.config();
+const CommonDataPk = process.env.DataPk;
 
 let StartFunc = ({ inFilesArray, inFrom }) => {
     LocalFuncCreateFolder();
@@ -26,8 +27,8 @@ let StartFunc = ({ inFilesArray, inFrom }) => {
 
 let LocalFuncCreateFolder = () => {
     try {
-        if (fs.existsSync(`${ConfigJson.ToDataDetails.DataPath}/${process.env.DataPk}`) === false) {
-            fs.mkdirSync(`${ConfigJson.ToDataDetails.DataPath}/${process.env.DataPk}`, { recursive: true });
+        if (fs.existsSync(`${ConfigJson.ToDataDetails.DataPath}/${CommonDataPk}`) === false) {
+            fs.mkdirSync(`${ConfigJson.ToDataDetails.DataPath}/${CommonDataPk}`, { recursive: true });
         };
     } catch (error) {
         console.log("error  : ", error);
@@ -36,7 +37,6 @@ let LocalFuncCreateFolder = () => {
 
 let LocalFuncCreateTableAsFolder = ({ inTablesCollection }) => {
     let LocalTablesCollection = inTablesCollection;
-    // console.log("inTablesCollection : ", LocalTablesCollection);
 
     if ("children" in LocalTablesCollection === false) {
         return;
@@ -44,7 +44,7 @@ let LocalFuncCreateTableAsFolder = ({ inTablesCollection }) => {
 
     try {
         LocalTablesCollection.children.forEach(element => {
-            let LoopInsidePath = `${ConfigJson.ToDataDetails.DataPath}/${ConfigJson.ToDataDetails.DataPk}/${path.parse(element.name).name}`;
+            let LoopInsidePath = `${ConfigJson.ToDataDetails.DataPath}/${CommonDataPk}/${path.parse(element.name).name}`;
 
             if (fs.existsSync(LoopInsidePath) === false) {
                 fs.mkdirSync(LoopInsidePath, { recursive: true });
