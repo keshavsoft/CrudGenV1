@@ -37,7 +37,10 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inBranchDC }) => {
 
     let jVarLocalReturnObject = inQrData.map(loopQr => {
         const match = inScandata.some(loopScan => loopScan.QrCodeId == loopQr.pk);
-        let LoalBranchDCFindeData = inBranchDC.find(e => e.pk === loopQr.VoucherRef);
+        const matchFind = inScandata.find(loopScan => loopScan.QrCodeId == loopQr.pk);
+        
+        let LoalBranchDCFindeData = inBranchDC.find(e => e.pk == matchFind?.VoucherRef);
+        
         return {
             QrCodeId: loopQr.pk,
             ItemName: loopQr.ItemName,
