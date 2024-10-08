@@ -26,6 +26,8 @@ call npm run FromEntryVoucher
 call npm run FromEntryQrCodes
 call npm run PressingVoucher
 call npm run PressingQrCodes
+call npm run CompletionVoucher
+call npm run CompletionQrCodes
 
 
 
