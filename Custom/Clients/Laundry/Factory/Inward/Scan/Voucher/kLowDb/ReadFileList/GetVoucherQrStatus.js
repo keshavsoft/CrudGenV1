@@ -43,13 +43,8 @@ let jFLocalMergeFunc = ({ inBranchDc, inBranchScan, inEntryScan, inEntryCancelSc
         let LocalFilterBranchScanData = inBranchScan.filter(loopQr => loopQr.VoucherRef == loopDc.pk);
         let LocalFilterEntrySacnData = inEntryScan.filter(loopQr => loopQr.VoucherRef == loopDc.pk);
 
-        let LocalFilrerEntryReturnData = inEntryCancelScan.map(loop =>
-            LocalFilterEntrySacnData.filter(element => loop.QrCodeId === element.QrCodeId)
-        );
-
         loopDc.Sent = LocalFilterBranchScanData.length;
         loopDc.Scanned = LocalFilterEntrySacnData.length;
-        loopDc.Return = LocalFilrerEntryReturnData.length;
         loopDc.TimeSpan = TimeSpan({ DateTime: loopDc.DateTime });
         return loopDc
     });

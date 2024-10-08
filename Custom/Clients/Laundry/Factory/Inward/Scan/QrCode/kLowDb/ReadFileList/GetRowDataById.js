@@ -20,7 +20,7 @@ let StartFunc = ({ inFactory, inId }) => {
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
 
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactorySelected === LocalFactory);
+    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let LocalEntryScanAndDcMergeData = LoclaEntryScanAndDcMergeFunc({ inEntryScan: LocalFilterEntryScan, inBranchDc: LocalFilterBranchDC });
 
@@ -60,7 +60,7 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
 const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
     let LocalArray = [];
     inEntryScan.forEach(element => {
-        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherNumber)
+        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherRef)
         if (locaFindData !== undefined) {
             let LocalMergeData = { ...locaFindData, ...element }
             LocalArray.push(LocalMergeData)
