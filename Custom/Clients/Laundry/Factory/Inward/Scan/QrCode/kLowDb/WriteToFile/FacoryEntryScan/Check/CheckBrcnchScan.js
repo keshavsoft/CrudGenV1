@@ -18,7 +18,7 @@ const StartFunc = ({ inTable, inDc, inQrCodeId }) => {
         return LocalReturnData;
     };
 
-    let LocalRowNeeded = dbForQrCodes.JsonData.find(e => e.VoucherRef == LocalDc);
+    let LocalRowNeeded = dbForQrCodes.JsonData.find(e => e.QrCodeId == LocalQrCodeId && e.VoucherRef == LocalDc);
 
     if (LocalRowNeeded === undefined) {
         LocalReturnData.KReason = `Not this Dc :${LocalDc}`
