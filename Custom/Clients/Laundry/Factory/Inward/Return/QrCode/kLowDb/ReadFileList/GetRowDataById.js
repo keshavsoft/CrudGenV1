@@ -1,6 +1,6 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryCancelScan.js';
-import { StartFunc as BranchDc } from '../CommonFuncs/EntryCancelDc.js';
+import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
+import { StartFunc as EntryCancelDc } from '../CommonFuncs/EntryCancelDc.js';
 
 let StartFunc = ({ inFactory, inId }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -9,18 +9,18 @@ let StartFunc = ({ inFactory, inId }) => {
     const Qrdb = QrCodes();
     Qrdb.read();
 
-    const BranchDcdb = BranchDc();
-    BranchDcdb.read();
+    const EntryCancelDcdb = EntryCancelDc();
+    EntryCancelDcdb.read();
 
-    const EntryScandb = EntryScan();
-    EntryScandb.read();
+    const EntryCancelScandb = EntryCancelScan();
+    EntryCancelScandb.read();
 
 
-    let LocalFilterBranchDC = BranchDcdb.data.filter(e => e.pk == LocalId);
+    let LocalFilterBranchDC = EntryCancelDcdb.data.filter(e => e.pk == LocalId);
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
 
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactorySelected === LocalFactory);
+    let LocalFilterEntryScan = EntryCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let LocalEntryScanAndDcMergeData = LoclaEntryScanAndDcMergeFunc({ inEntryScan: LocalFilterEntryScan, inBranchDc: LocalFilterBranchDC });
 
@@ -47,9 +47,10 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
             ItemName: matchedRecord?.ItemName,
             Rate: matchedRecord?.Rate,
 
-            VoucherNumber: loopScan?.VoucherNumber,
-            QrCodeId: loopScan.QrCodeId,
+            VoucherNumber: loopScan?.VoucherRef,
             DCDate: new Date(loopScan?.Date).toLocaleDateString('en-GB'),
+
+            QrCodeId: loopScan.QrCodeId,
             BranchName: loopScan?.BranchName,
             Description: loopScan?.Description,
             TimeSpan: TimeSpan({ DateTime: loopScan.DateTime })
@@ -61,7 +62,7 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
 const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
     let LocalArray = [];
     inEntryScan.forEach(element => {
-        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherNumber)
+        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherRef)
         if (locaFindData !== undefined) {
             let LocalMergeData = { ...locaFindData, ...element }
             LocalArray.push(LocalMergeData)
