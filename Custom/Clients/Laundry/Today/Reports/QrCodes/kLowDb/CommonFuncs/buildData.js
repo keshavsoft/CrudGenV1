@@ -23,7 +23,6 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inBranchDC }) => {
     let jVarLocalReturnObject = inQrData.map(loopQr => {
         const matchBranchScan = inScandata.some(loopScan => loopScan.QrCodeId == loopQr.pk);
         const matchFind = inScandata.find(loopScan => loopScan.QrCodeId == loopQr.pk);
-
         let LoalBranchDCFindeData = inBranchDC.find(e => e.pk == matchFind?.VoucherRef);
 
         return {
@@ -41,8 +40,6 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inBranchDC }) => {
             TimeSpan: TimeSpan({ DateTime: loopQr.BookingData.OrderData.Currentdateandtime })
         };
     });
-
-
     return jVarLocalReturnObject;
 };
 
@@ -62,6 +59,6 @@ function TimeSpan({ DateTime }) {
     } else {
         return diffMins + " min";
     }
-}
+};
 
 export { StartFunc };
