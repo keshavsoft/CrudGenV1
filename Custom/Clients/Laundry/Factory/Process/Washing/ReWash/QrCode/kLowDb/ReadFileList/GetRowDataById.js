@@ -47,9 +47,11 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
             ItemName: matchedRecord?.ItemName,
             Rate: matchedRecord?.Rate,
 
-            VoucherNumber: loopScan?.VoucherNumber,
-            QrCodeId: loopScan.QrCodeId,
+            VoucherNumber: loopScan?.VoucherRef,
+            Description: loopScan?.Description,
             DCDate: new Date(loopScan?.Date).toLocaleDateString('en-GB'),
+
+            QrCodeId: loopScan.QrCodeId,
             BranchName: loopScan?.BranchName,
             TimeSpan: TimeSpan({ DateTime: loopScan.DateTime })
         };
@@ -60,7 +62,7 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
 const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
     let LocalArray = [];
     inEntryScan.forEach(element => {
-        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherNumber)
+        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherRef)
         if (locaFindData !== undefined) {
             let LocalMergeData = { ...locaFindData, ...element }
             LocalArray.push(LocalMergeData)

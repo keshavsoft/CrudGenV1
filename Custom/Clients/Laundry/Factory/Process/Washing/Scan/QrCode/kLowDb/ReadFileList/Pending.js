@@ -1,6 +1,7 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
 import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
 import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
+import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -15,14 +16,21 @@ let StartFunc = ({ inFactory }) => {
     const WashingScandb = WashingScan();
     WashingScandb.read();
 
+    const EntryCancelScandb = EntryCancelScan();
+    EntryCancelScandb.read();
+
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
     let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
     let LocalFilterWashingScandb = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
+    let LocalFilterCancelScan = EntryCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
 
+    let LocalFilterEntryScanData = LocalFilterEntryScan.filter(loopQr =>
+        !LocalFilterCancelScan.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
+    );
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inQrData: LocalFilterQr,
-        inScandata: LocalFilterEntryScan,
+        inScandata: LocalFilterEntryScanData,
         inEntryScan: LocalFilterWashingScandb
     });
     let localReturnData = getUnmatchedRecords({ inFromQrData: jVarLocalTransformedData, inEntryScan: LocalFilterWashingScandb })

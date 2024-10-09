@@ -28,7 +28,7 @@ let StartFunc = ({ inFactory }) => {
     WashingCancelScandb.read();
 
     let LocalFilterBranchScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
-    let LocalFilterCancelScan = EntryCancelScandb.data.filter(e => e.FactorySelected === LocalFactory);
+    let LocalFilterCancelScan = EntryCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let LocalFilterEntryScanData = LocalFilterBranchScan.filter(loopQr =>
         !LocalFilterCancelScan.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
