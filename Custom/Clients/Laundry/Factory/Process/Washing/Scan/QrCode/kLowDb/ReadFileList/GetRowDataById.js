@@ -60,7 +60,7 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
 const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
     let LocalArray = [];
     inEntryScan.forEach(element => {
-        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherNumber)
+        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherRef)
         if (locaFindData !== undefined) {
             let LocalMergeData = { ...locaFindData, ...element }
             LocalArray.push(LocalMergeData)
