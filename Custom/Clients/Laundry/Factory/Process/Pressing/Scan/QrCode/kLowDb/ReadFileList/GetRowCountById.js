@@ -1,4 +1,4 @@
-import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/PressingScan.js';
 
 let StartFunc = ({ inFactory, inId }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');

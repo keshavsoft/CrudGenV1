@@ -1,6 +1,7 @@
 import { StartFunc as StartFuncPullData } from "./PullData/EntryFile.js";
 import { StartFunc as StartFuncUniqueKeyCheck } from "./Checks/UniqueKeyCheck.js";
 import { StartFunc as checkReferences } from "./Checks/checkReferences.js";
+import { StartFunc as CheckAndUpdate } from "./CheckAndUpdate/EntryFile.js";
 import { StartFunc as LocalFuncGeneratePk } from "./Generate.js";
 
 let StartFunc = ({ inDataToInsert }) => {
@@ -8,13 +9,22 @@ let StartFunc = ({ inDataToInsert }) => {
     let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
     let LocalStartFuncPullData = StartFuncPullData();
 
-    if (LocalStartFuncPullData === false) {
+    if (LocalStartFuncPullData.KTF === false) {
         LocalReturnData.KReason = LocalStartFuncPullData.KReason;
         return LocalReturnData;
     };
 
     const LocalTableSchema = LocalStartFuncPullData.inTableSchema;
     const db = LocalStartFuncPullData.inDb;
+
+    let LocalCheckAndUpdate = CheckAndUpdate({ inDatedb: db, inDataToInsert });
+
+    if (LocalCheckAndUpdate.KTF === true) {
+
+        LocalReturnData.KTF = true;
+        LocalReturnData.ScanNo = LocalCheckAndUpdate.QrCodeId
+        return LocalReturnData;
+    };
 
     let LocalFromCheckReferences = checkReferences({
         inTableSchema: LocalTableSchema,

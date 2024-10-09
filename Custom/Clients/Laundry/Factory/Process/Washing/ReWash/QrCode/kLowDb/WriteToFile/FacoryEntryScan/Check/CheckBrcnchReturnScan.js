@@ -1,4 +1,4 @@
-import { StartFunc as StartFuncCommonFuncs } from '../../../CommonFuncs/EntryCancelScan.js';
+import { StartFunc as StartFuncCommonFuncs } from '../../../CommonFuncs/WashingCancelScan.js';
 
 const StartFunc = ({ inTable, inQrCodeId }) => {
     let LocalQrCodeId = inQrCodeId;
