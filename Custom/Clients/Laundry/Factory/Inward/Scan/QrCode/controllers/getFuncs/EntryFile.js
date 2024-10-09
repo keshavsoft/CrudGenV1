@@ -45,6 +45,7 @@ let GetRowDataFunc = async (req, res) => {
     let LocalParams = req.params;
     let LocalFactory = LocalParams.inFactory;
     let Localid = LocalParams.id;
+
     let LocalFromRepo = GetRowDataFuncRepo({ inFactory: LocalFactory, inId: Localid, });
 
     res.status(200).json(LocalFromRepo);

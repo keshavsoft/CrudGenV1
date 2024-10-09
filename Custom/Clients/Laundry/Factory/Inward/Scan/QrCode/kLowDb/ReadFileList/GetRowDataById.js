@@ -15,20 +15,20 @@ let StartFunc = ({ inFactory, inId }) => {
     const EntryScandb = EntryScan();
     EntryScandb.read();
 
-
     let LocalFilterBranchDC = BranchDcdb.data.filter(e => e.pk == LocalId);
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
 
     let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
 
-    let LocalEntryScanAndDcMergeData = LoclaEntryScanAndDcMergeFunc({ inEntryScan: LocalFilterEntryScan, inBranchDc: LocalFilterBranchDC });
-
+    let LocalEntryScanAndDcMergeData = LoclaEntryScanAndDcMergeFunc({
+        inEntryScan: LocalFilterEntryScan,
+        inBranchDc: LocalFilterBranchDC
+    });
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inQrData: LocalFilterQr,
         inEntryScan: LocalEntryScanAndDcMergeData
-
     });
 
     let LocalArrayReverseData = jVarLocalTransformedData.slice().reverse();
@@ -59,13 +59,16 @@ let jFLocalMergeFunc = ({ inQrData, inEntryScan }) => {
 
 const LoclaEntryScanAndDcMergeFunc = ({ inEntryScan, inBranchDc }) => {
     let LocalArray = [];
+
     inEntryScan.forEach(element => {
-        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherRef)
+        let locaFindData = inBranchDc.find(e => e.pk == element.VoucherRef);
+
         if (locaFindData !== undefined) {
             let LocalMergeData = { ...locaFindData, ...element }
             LocalArray.push(LocalMergeData)
         };
     });
+
     return LocalArray;
 };
 
