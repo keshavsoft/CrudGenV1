@@ -26,8 +26,34 @@ This project focuses on automating crudBD operations for JSON files, making it e
 - **Table Schemas definition location :** root:KCode/TableSchema
 - **Table Schema to be considered :** root:KData/Config.json:ToDataDetails.DataPk
 - **Frontend :** root:public
-
+  
 ### <a name="installation"></a>## **Installation** 🚀
+
+1. https://git-scm.com/
+
+2. Create a folder and navigate into it using the command prompt.
+
+3. Clone the repository
+   ```
+   
+   git clone https://github.com/keshavsoft/CrudGenV1
+   
+   ```
+4. Change Directory to CrudGenV1 or Open the cloned folder, navigate to CrudGenV1, and open the command prompt.
+   ```
+   
+    cd CrudGenV1
+   
+   ```
+5. Run the batch file (For Windows)
+   ```
+   
+   fbd.bat
+   
+   ```
+- node app
+
+### <a name="advancedinstallation"></a>## **advancedinstallation** 🚀
 
 1. https://git-scm.com/
 
@@ -49,6 +75,7 @@ This project focuses on automating crudBD operations for JSON files, making it e
    ```
    
     PORT=7019
+    DataPk=required from root:KCode/DataSchema
    
    ```
 6. Run the batch file (For Windows)
@@ -74,11 +101,8 @@ This project focuses on automating crudBD operations for JSON files, making it e
       npm run start
    
    ```
-### <a name="advancedinstallation"></a>## **advancedinstallation** 🚀
-- git clone https://github.com/keshavsoft/FrontEndByVite and keep in this location only
-- keep the needed value KCode/Config.json : ToDataDetails.DataPk, from KCode/DataSchema and KCode/TableSchema
-- FrontATSubTableSideBar.bat
-- node app
+
+ 
   
 #### **run the below commands to generate them** 
 - **Backend:** run KCode/Backend.js
