@@ -1,22 +1,15 @@
-import { LowSync } from 'lowdb'
-import { JSONFileSync } from 'lowdb/node'
-import Configjson from '../../../../../../../../Config.json' assert { type: 'json' };
-let LocalTableName = "QrCodes.json";
+import { StartFunc as PullData } from "../../../../../../../../../../../binV4/QrCodes/Show/kLowDb/PullData/returnAsArray.js";
+
+let CommonFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
 
 let StartFunc = () => {
-    let LocalDataPk = Configjson.jsonConfig.DataPk;
+    let LocalQrCodeData = PullData();
 
-    let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
+    let LocalFilterQr = LocalQrCodeData.filter(e => {
+        return new Date(e.BookingData.OrderData.Currentdateandtime).toLocaleDateString('en-GB') == CommonFindValue;
+    });
 
-    LocalReturnData.KTF = false;
-
-    LocalReturnData.UserDataFilePath = `${Configjson.jsonConfig.DataPath}/${LocalDataPk}/${LocalTableName}`;
-
-    const defaultData = { error: "From KLowDb" }
-
-    const db = new LowSync(new JSONFileSync(LocalReturnData.UserDataFilePath), defaultData);
-
-    return db;
+    return LocalFilterQr;
 };
 
 export { StartFunc };

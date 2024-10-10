@@ -1,15 +1,26 @@
 import { StartFunc as QrCodes } from './QrCodes.js';
 import { StartFunc as BranchScan } from './BranchScan.js';
 
-let StartFunc = () => {
-    const QrCodeData = QrCodes();
+let StartFunc = ({ inBranch }) => {
+    let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
 
-    const BranchScanData = BranchScan();
+    let LocalBranchName = inBranch;
 
-    let jVarLocalTransformedData = jFLocalMergeFunc({
-        inQrData: QrCodeData,
-        inScandata: BranchScanData
+    const Qrdb = QrCodes();
+    Qrdb.read();
+
+    const BranchScandb = BranchScan();
+    BranchScandb.read();
+
+    let LocalFilterQr = Qrdb.data.filter(e => {
+        return new Date(e.BookingData.OrderData.Currentdateandtime).toLocaleDateString('en-GB') == LocalFindValue && e.BookingData.OrderData.BranchName === LocalBranchName;
     });
+
+    let LocalFilterBranchScan = BranchScandb.data.filter(e => {
+        return new Date(e.DateTime).toLocaleDateString('en-GB') == LocalFindValue && e.BranchName === LocalBranchName;
+    });
+
+    let jVarLocalTransformedData = jFLocalMergeFunc({ inQrData: LocalFilterQr, inScandata: LocalFilterBranchScan });
 
     return jVarLocalTransformedData;
 };
@@ -18,7 +29,7 @@ let jFLocalMergeFunc = ({ inQrData, inScandata }) => {
 
     let jVarLocalReturnObject = inQrData.map(loopQr => {
         const match = inScandata.some(loopScan => loopScan.QrCodeId == loopQr.pk);
-
+        
         return {
             QrCodeId: loopQr.pk,
             ItemName: loopQr.ItemName,

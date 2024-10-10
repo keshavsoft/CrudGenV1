@@ -1,18 +1,10 @@
-import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
+import { StartFunc as buildData } from '../CommonFuncs/buildData.js';
 
 let StartFunc = () => {
-    // let LocalFindValue = "02/09/2024";
-    let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
+    const LocalQrCodeData = buildData();
 
-    const Qrdb = QrCodes();
-    Qrdb.read();
-
-    let LocalFilterQr = Qrdb.data.filter(e => {
-        return new Date(e.BookingData.OrderData.Currentdateandtime).toLocaleDateString('en-GB') == LocalFindValue;
-    });
-
-    let jVarLocalTransformedData = jFLocalMergeFunc({ inQrData: LocalFilterQr });
-    let LocalArrayReverseData = jVarLocalTransformedData.slice().reverse();
+    // let jVarLocalTransformedData = jFLocalMergeFunc({ inQrData: Qrdb });
+    let LocalArrayReverseData = LocalQrCodeData.slice().reverse();
 
     return LocalArrayReverseData;
 };
