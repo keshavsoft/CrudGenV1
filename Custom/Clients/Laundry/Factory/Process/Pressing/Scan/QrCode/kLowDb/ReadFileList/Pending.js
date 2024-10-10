@@ -1,6 +1,6 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/PressingScan.js';
+import { StartFunc as EntryScan } from '../CommonFuncs/WashingScan.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');

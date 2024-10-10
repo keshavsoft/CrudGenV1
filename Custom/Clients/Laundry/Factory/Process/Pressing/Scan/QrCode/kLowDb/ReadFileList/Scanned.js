@@ -1,8 +1,8 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
-import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
-import { StartFunc as WashingDC } from '../CommonFuncs/WashingDC.js';
+import { StartFunc as WashingScan } from '../CommonFuncs/PressingScan.js';
+import { StartFunc as EntryScan } from '../CommonFuncs/WashingScan.js';
+import { StartFunc as EntryCancelScan } from '../CommonFuncs/WashingCancelScan.js';
+import { StartFunc as WashingDC } from '../CommonFuncs/PressingDC.js';
 import { StartFunc as ReWashScan } from '../CommonFuncs/ReWashScan.js';
 
 let StartFunc = ({ inFactory }) => {
