@@ -1,7 +1,6 @@
-import { StartFunc as StartFuncCommonFuncs } from '../../../CommonFuncs/WashingScan.js';
+import { StartFunc as StartFuncCommonFuncs } from '../../../CommonFuncs/EntryCancelScan.js';
 
 const StartFunc = ({ inTable, inQrCodeId }) => {
-    let LocalFactoryName = inTable;
     let LocalQrCodeId = inQrCodeId;
 
     let LocalReturnData = { KTF: false };
@@ -12,16 +11,8 @@ const StartFunc = ({ inTable, inQrCodeId }) => {
 
     let LocalQrCheck = dbForQrCodes.JsonData.find(e => e.QrCodeId == LocalQrCodeId);
 
-    if (LocalQrCheck === undefined) {
-        LocalReturnData.KReason = `No QrCode :${LocalQrCodeId}`
-        return LocalReturnData;
-    };
-
-
-    let LocalFactoryCheck = dbForQrCodes.JsonData.find(e => e.DCFactory == LocalFactoryName);
-
-    if (LocalFactoryCheck === undefined) {
-        LocalReturnData.KReason = `Not this Factory :${LocalFactoryName}`
+    if (LocalQrCheck !== undefined) {
+        LocalReturnData.KReason = `Cancel QrCode :${LocalQrCodeId}`
         return LocalReturnData;
     };
 
