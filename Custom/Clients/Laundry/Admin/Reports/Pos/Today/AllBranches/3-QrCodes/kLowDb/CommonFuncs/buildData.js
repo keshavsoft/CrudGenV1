@@ -1,26 +1,30 @@
 import { StartFunc as QrCodes } from './QrCodes.js';
 import { StartFunc as BranchScan } from './BranchScan.js';
 import { StartFunc as EntryScan } from './EntryScan.js';
+import { StartFunc as WashingScan } from './WashingScan.js';
 
 let StartFunc = () => {
     const QrCodeData = QrCodes();
 
     const BranchScanData = BranchScan();
     const EntryScanData = EntryScan();
+    const WashingScanData = WashingScan();
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inQrData: QrCodeData,
         inScandata: BranchScanData,
-        inEntryScanData: EntryScanData
+        inEntryScanData: EntryScanData,
+        inWashingScanData: WashingScanData
     });
 
     return jVarLocalTransformedData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData, inWashingScanData }) => {
     let jVarLocalReturnObject = inQrData.map(loopQr => {
         const match = inScandata.some(loopScan => loopScan.QrCodeId == loopQr.pk);
         const LoopInsideFindEntryScan = inEntryScanData.some(loopScan => loopScan.QrCodeId == loopQr.pk);
+        const LoopInsideFindWashingScan = inWashingScanData.some(loopScan => loopScan.QrCodeId == loopQr.pk);
 
         return {
             QrCodeId: loopQr.pk,
@@ -33,6 +37,7 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData }) => {
             OrderDateTime: loopQr.BookingData.OrderData.Currentdateandtime,
             Status: match,
             FactoryScan: LoopInsideFindEntryScan,
+            WashingScan: LoopInsideFindWashingScan,
             TimeSpan: TimeSpan({ DateTime: loopQr.BookingData.OrderData.Currentdateandtime })
         };
     });
