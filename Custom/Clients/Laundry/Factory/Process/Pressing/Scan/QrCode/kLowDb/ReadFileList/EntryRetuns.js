@@ -1,6 +1,6 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
-import { StartFunc as EntryCancelDc } from '../CommonFuncs/EntryCancelDc.js';
+import { StartFunc as EntryCancelScan } from '../CommonFuncs/PressingCancelScan.js';
+import { StartFunc as EntryCancelDc } from '../CommonFuncs/PressingCancelDC.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
@@ -60,7 +60,7 @@ const LoclaReturnScanAndDcMergeFunc = ({ inCancelScan, inCancelDc }) => {
 
     let LocalMapData = inCancelScan.map(element => {
 
-        let locaFindData = inCancelDc.find(e => e.pk == element.VoucherNumber)
+        let locaFindData = inCancelDc.find(e => e.pk == element.VoucherRef)
         return { ...locaFindData, ...element }
     });
     return LocalMapData;

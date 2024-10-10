@@ -1,7 +1,7 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
 import { StartFunc as WashingScan } from '../CommonFuncs/WashingScan.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
-import { StartFunc as EntryCancelScan } from '../CommonFuncs/EntryCancelScan.js';
+import { StartFunc as PressingScan } from '../CommonFuncs/PressingScan.js';
+import { StartFunc as PressingCancelScan } from '../CommonFuncs/PressingCancelScan.js';
 import { StartFunc as WashingCancelScan } from '../CommonFuncs/WashingCancelScan.js';
 import { StartFunc as ReWashScan } from '../CommonFuncs/ReWashScan.js';
 
@@ -12,8 +12,8 @@ let StartFunc = ({ inFactory }) => {
     const Qrdb = QrCodes();
     Qrdb.read();
 
-    const EntryScandb = EntryScan();
-    EntryScandb.read();
+    const PressingScandb = PressingScan();
+    PressingScandb.read();
 
     const WashingScandb = WashingScan();
     WashingScandb.read();
@@ -21,47 +21,41 @@ let StartFunc = ({ inFactory }) => {
     const ReWashScandb = ReWashScan();
     ReWashScandb.read();
 
-    const EntryCancelScandb = EntryCancelScan();
-    EntryCancelScandb.read();
+    const PressingCancelScandb = PressingCancelScan();
+    PressingCancelScandb.read();
 
     const WashingCancelScandb = WashingCancelScan();
     WashingCancelScandb.read();
 
-    let LocalFilterBranchScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
-    let LocalFilterCancelScan = EntryCancelScandb.data.filter(e => e.FactorySelected === LocalFactory);
+    let LocalFilterWashing = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
+    let LocalFilterPressingScan = PressingScandb.data.filter(e => e.FactoryName === LocalFactory);
 
-    let LocalFilterEntryScanData = LocalFilterBranchScan.filter(loopQr =>
-        !LocalFilterCancelScan.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
+    let LocalFilterPressingCancelScan = PressingCancelScandb.data.filter(e => e.FactorySelected === LocalFactory);
+
+    let LocalFilterEntryScanData = LocalFilterWashing.filter(loopQr =>
+        !WashingCancelScandb.data.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
     );
-    let LocalFilterReWashScan = ReWashScandb.data.filter(e => e.FactoryName === LocalFactory);
-
-    let LocalFilterWashingCancelScan = WashingCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
-
 
     let LocalFilterQr = Qrdb.data.filter(e => e.location === LocalFactory);
-
-    let LocalFilterEntryScan = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
 
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inQrData: LocalFilterQr,
         inScandata: LocalFilterEntryScanData,
-        inEntryScan: LocalFilterEntryScan,
-        inEntryCancelScan: LocalFilterWashingCancelScan,
-        inReWashScan: LocalFilterReWashScan
+        inPressingScan: LocalFilterPressingScan,
+        inEntryCancelScan: LocalFilterPressingCancelScan
     });
     let LocalArrayReverseData = jVarLocalTransformedData.slice().reverse();
 
     return LocalArrayReverseData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan, inReWashScan }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inPressingScan, inEntryCancelScan }) => {
 
     let jVarLocalReturnObject = inScandata.map(loopScan => {
         const matchedRecord = inQrData.find(loopQr => loopQr.pk == loopScan.QrCodeId);
-        const match = inEntryScan.some(loopEntryScan => loopEntryScan.QrCodeId == loopScan.QrCodeId);
+        const match = inPressingScan.some(loopEntryScan => loopEntryScan.QrCodeId == loopScan.QrCodeId);
         const CheckEntryReturn = inEntryCancelScan.some(loopEntryReturnScan => loopEntryReturnScan.QrCodeId == loopScan.QrCodeId);
-        const matchReWashScan = inReWashScan.some(loopReWashScan => loopReWashScan.QrCodeId == loopScan.QrCodeId);
 
         return {
             OrderNumber: matchedRecord?.GenerateReference.ReferncePk,
@@ -77,7 +71,6 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScan, inEntryCancelScan, 
             BranchName: loopScan?.BranchName,
             Status: match,
             EntryReturnStarus: CheckEntryReturn,
-            ReWashStatus: matchReWashScan,
             TimeSpan: TimeSpan({ DateTime: loopScan.DateTime })
         };
     }).filter(record => record.MatchedRecord !== null);
