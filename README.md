@@ -7,6 +7,7 @@ crud generate from table schema
 
 ## **Table of Contents** 📚
 - [Overview](#Overview)
+- [Key Locations](#keyLocations)
 - [Installation](#installation)
 - [BackEnd Only](#BackEnd)
 - [Folder Structure](#folder-structure)
@@ -16,43 +17,15 @@ crud generate from table schema
 - [end points testing](#testendpoints)
 - [visual studio code extensions](#vscodeextensions)
  
-#### **Key Locations** 
+### <a name="overview"></a>## **Overview** 🔎
+This project focuses on automating crudBD operations for JSON files, making it easy to manage and manipulate data. It offers a user-friendly interface for performing essential actions on JSON files, such as creating, reading, updating, and deleting records.
+### <a name="keyLocations"></a>## **Key Locations** 🔎
 - **Backend:** root:bin, root:binSecured ( for jwt protected end points same as bin ), root:binV2 for new branched End points
 - **Database:** root:KData/JSON
 - **Columns Schemas definition location :** root:KCode/DataSchema
 - **Table Schemas definition location :** root:KCode/TableSchema
 - **Table Schema to be considered :** root:KData/Config.json:ToDataDetails.DataPk
 - **Frontend :** root:public
-
-### <a name="advancedinstallation"></a>## **advancedinstallation** 🚀
-- git clone https://github.com/keshavsoft/FrontEndByVite and keep in this location only
-- keep the needed value KCode/Config.json : ToDataDetails.DataPk, from KCode/DataSchema and KCode/TableSchema
-- FrontATSubTableSideBar.bat
-- node app
-  
-#### **run the below commands to generate them** 
-- **Backend:** run KCode/Backend.js
-- **Database:** run KCode/Database.js
-- **Frontend:** run npm run home
-
-#### **run the batch files for windows** 
-- **Batch File:** run fbd.bat
-
-#### **run the below commands to see the output** 
-- run npm run start
-
-### <a name="overview"></a>## **Overview** 🔎
-This project focuses on automating crudBD operations for JSON files, making it easy to manage and manipulate data. It offers a user-friendly interface for performing essential actions on JSON files, such as creating, reading, updating, and deleting records.
-#### **Key Features** 
-- **Dynamic Schema Handling:** Define table schemas using JSON files and dynamically generate crudBD operations.
-- **Cross-Platform Compatibility:** Compatible with Windows, Mac, and Linux operating systems.
-- **Effortless Setup:** Use provided batch files for Windows or simple commands for other OS to set up the project quickly.
-- **Automatic Frontend Setup:** Automatically creates a frontend codebase in the public/JsoncrudBD directory.
-#### **Technologies Used** 
-- **Node.js:** Leveraging the power of JavaScript on the server-side.
-- **Express.js:** A minimal and flexible Node.js web application framework for building robust APIs.
-- **SQLite:** A lightweight, file-based database for efficient data storage.
-- **npm:** The package manager for Node.js used for installing project dependencies.
 
 ### <a name="installation"></a>## **Installation** 🚀
 
@@ -101,6 +74,34 @@ This project focuses on automating crudBD operations for JSON files, making it e
       npm run start
    
    ```
+### <a name="advancedinstallation"></a>## **advancedinstallation** 🚀
+- git clone https://github.com/keshavsoft/FrontEndByVite and keep in this location only
+- keep the needed value KCode/Config.json : ToDataDetails.DataPk, from KCode/DataSchema and KCode/TableSchema
+- FrontATSubTableSideBar.bat
+- node app
+  
+#### **run the below commands to generate them** 
+- **Backend:** run KCode/Backend.js
+- **Database:** run KCode/Database.js
+- **Frontend:** run npm run home
+
+#### **run the batch files for windows** 
+- **Batch File:** run fbd.bat
+
+#### **run the below commands to see the output** 
+- run npm run start
+
+#### **Key Features** 
+- **Dynamic Schema Handling:** Define table schemas using JSON files and dynamically generate crudBD operations.
+- **Cross-Platform Compatibility:** Compatible with Windows, Mac, and Linux operating systems.
+- **Effortless Setup:** Use provided batch files for Windows or simple commands for other OS to set up the project quickly.
+- **Automatic Frontend Setup:** Automatically creates a frontend codebase in the public/JsoncrudBD directory.
+#### **Technologies Used** 
+- **Node.js:** Leveraging the power of JavaScript on the server-side.
+- **Express.js:** A minimal and flexible Node.js web application framework for building robust APIs.
+- **SQLite:** A lightweight, file-based database for efficient data storage.
+- **npm:** The package manager for Node.js used for installing project dependencies.
+
 ### <a name="BackEnd"></a>## **BackEnd** 🚀
 
 1. Delete all the folders starting with bin ( which is the BackEnd code).
