@@ -1,7 +1,7 @@
 import { StartFunc as All } from '../../kLowDb/ReadFileList/All.js';
 import { StartFunc as Pending } from '../../kLowDb/ReadFileList/Pending.js';
 import { StartFunc as Scanned } from '../../kLowDb/ReadFileList/Scanned.js';
-import { StartFunc as Returns } from '../../kLowDb/ReadFileList/EntryRetuns.js';
+// import { StartFunc as Returns } from '../../kLowDb/ReadFileList/EntryRetuns.js';
 import { StartFunc as GetRowDataById } from '../../kLowDb/ReadFileList/GetRowDataById.js';
 import { StartFunc as GetRowQrDataById } from '../../kLowDb/ReadFileList/GetRowQrDataById.js';
 import { StartFunc as GetRowCountById } from '../../kLowDb/ReadFileList/GetRowCountById.js';
@@ -27,9 +27,9 @@ let GetScannedFunc = ({ inFactory }) => {
 };
 
 let GetReturnsFunc = ({ inFactory }) => {
-    let LocalFromLowDb = Returns({ inFactory });
+    // let LocalFromLowDb = Returns({ inFactory });
 
-    return LocalFromLowDb;
+    // return LocalFromLowDb;
 };
 
 let GetRowDataFunc = ({ inFactory, inId }) => {
