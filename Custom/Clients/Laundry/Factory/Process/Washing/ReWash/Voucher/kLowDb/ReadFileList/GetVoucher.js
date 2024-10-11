@@ -1,5 +1,5 @@
-import { StartFunc as ReWashDC } from '../CommonFuncs/ReWashDC.js';
-import { StartFunc as ReWashScan } from '../CommonFuncs/ReWashScan.js';
+import { StartFunc as ReWashDC } from '../CommonFuncs/WashingCancelDC.js';
+import { StartFunc as ReWashScan } from '../CommonFuncs/WashingCancelScan.js';
 
 let StartFunc = ({ inFactory }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');

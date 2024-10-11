@@ -11,9 +11,9 @@ let StartFunc = ({ inFactory }) => {
     const EntryScandb = EntryScan();
     EntryScandb.read();
 
-    let LocalFilterBranchDc = BranchDcdb.data.filter(e => e.Factory === LocalFactory);
+    let LocalFilterBranchDc = BranchDcdb.data.filter(e => e.FactoryName === LocalFactory);
 
-    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.DCFactory === LocalFactory);
+    let LocalFilterEntryScan = EntryScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inBranchDc: LocalFilterBranchDc,
