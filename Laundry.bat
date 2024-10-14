@@ -15,6 +15,7 @@ call npm run Today-QrCodes
 call npm run Today-Orders
 call npm run Admin-AdminToday-QrCodes
 call npm run Admin-AdminToday-Orders
+call npm run Admin-Masters
 
 xcopy .\publicDir ..\CrudGenV1\public\Laundry /h /i /c /k /e /r /y
 
