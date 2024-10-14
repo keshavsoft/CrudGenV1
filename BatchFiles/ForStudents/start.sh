@@ -1,4 +1,4 @@
-cd ../../../crudFrontEnd
+cd ../crudFrontEnd
 
 npm run TableShowJs
 
