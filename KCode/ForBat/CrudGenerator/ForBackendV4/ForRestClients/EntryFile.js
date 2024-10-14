@@ -8,7 +8,7 @@ import { StartFunc as Search } from './Search/EntryFile.js';
 import { StartFunc as Bulk } from './Bulk/EntryFile.js';
 import { StartFunc as ShowWithColumns } from './ShowWithColumns/EntryFile.js';
 import { StartFunc as Sort } from './Sort/EntryFile.js';
-import { StartFunc as  SubTable} from './SubTable/EntryFile.js';
+import { StartFunc as SubTable } from './SubTable/EntryFile.js';
 
 let StartFunc = ({ inTablesCollection, inTo, inFrom, inConfigJson }) => {
     Show({ inTablesCollection, inTo });
