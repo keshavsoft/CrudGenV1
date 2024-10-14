@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "archiver": "^7.0.1",
     "cookie-parser": "^1.4.6",
     "directory-tree": "^3.5.1",
