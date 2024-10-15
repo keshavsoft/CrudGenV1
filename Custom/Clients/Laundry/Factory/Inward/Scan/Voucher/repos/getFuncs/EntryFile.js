@@ -4,8 +4,8 @@ import {
     GetQrStatusFunc as GetQrStatusFuncDal
 } from '../../dals/getFuncs/EntryFile.js';
 
-let GetFunc = () => {
-    return GetFuncDal();
+let GetFunc = ({ inFactory }) => {
+    return GetFuncDal({ inFactory });
 };
 
 let GetFilterFactoryFunc = ({ inFactory }) => {

@@ -5,7 +5,9 @@ import {
 } from '../../repos/getFuncs/EntryFile.js';
 
 let GetFunc = async (req, res) => {
-    let LocalFromRepo = GetFuncRepo();
+    let LocalParams = req.params;
+    let LocalFactory = LocalParams.inFactory;
+    let LocalFromRepo = GetFuncRepo({ inFactory: LocalFactory });
 
     res.status(200).json(LocalFromRepo);
 };
