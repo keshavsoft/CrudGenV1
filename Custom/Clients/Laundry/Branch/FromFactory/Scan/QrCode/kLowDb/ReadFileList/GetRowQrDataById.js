@@ -1,5 +1,5 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as BranchScan } from '../CommonFuncs/BranchScan.js';
+import { StartFunc as BranchScan } from '../CommonFuncs/FromFactoryScan.js';
 
 let StartFunc = ({ inId }) => {
     let LocalId = inId;
