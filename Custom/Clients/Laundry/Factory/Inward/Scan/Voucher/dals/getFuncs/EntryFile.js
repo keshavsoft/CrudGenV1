@@ -1,4 +1,4 @@
-import { StartFunc as GetVoucher } from '../../kLowDb/ReadFileList/GetVoucher.js';
+import { StartFunc as GetVoucher } from '../../kLowDb/ReadFromApi/GetVoucher.js';
 import { StartFunc as GetVoucherQrStatus } from '../../kLowDb/ReadFileList/GetVoucherQrStatus.js';
 
 let GetFunc = () => {
