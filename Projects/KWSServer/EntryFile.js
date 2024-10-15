@@ -15,7 +15,12 @@ let StartFunc = (server) => {
 
 let WsOnConnection = (ws, req) => {
     let LocalIpAddress = req.headers["x-forwarded-for"];
-
+  
+    if ("cookie" in req.headers) {
+        let LocalCookieValue = req.headers["cookie"].split(";");
+        console.log("LocalCookieValue : ", LocalCookieValue);
+    };
+    
     CommoninsertToClients({
         inClients: clients,
         ws,
