@@ -2,9 +2,10 @@
 cd ..\crudFrontEnd
 
 call npm run TableShowJs
+call npm run CreateStatic
 
 xcopy .\publicDir\TableShowFromJs ..\CrudGenV1\public\Students\TableShowFromJs /h /i /c /k /e /r /y
-
+xcopy .\publicDir\Protected\Create\Static ..\CrudGenV1\public\Students\Protected\Create\Static /h /i /c /k /e /r /y
 
 cd ..\FrontEndForClients
 
