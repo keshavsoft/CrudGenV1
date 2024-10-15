@@ -1,7 +1,7 @@
 @echo off
 cd ..\crudFrontEnd
 
-call npm run TableShowJs
+call npm run Table-ShowFromJs
 call npm run CreateStatic
 call npm run UnProtected-CreateStatic
 
