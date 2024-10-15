@@ -1,6 +1,6 @@
 import { StartFunc as QrCodes } from '../CommonFuncs/QrCodes.js';
-import { StartFunc as EntryScan } from '../CommonFuncs/EntryScan.js';
-import { StartFunc as BranchDc } from '../CommonFuncs/BranchDc.js';
+import { StartFunc as EntryScan } from '../CommonFuncs/FromFactoryScan.js';
+import { StartFunc as BranchDc } from '../CommonFuncs/CompletionDC.js';
 
 let StartFunc = ({ inFactory, inId }) => {
     // let LocalFindValue = new Date().toLocaleDateString('en-GB').replace(/\//g, '/');
