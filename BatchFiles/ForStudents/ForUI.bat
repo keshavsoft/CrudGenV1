@@ -1,6 +1,13 @@
 @echo off
-cd ..\..\..\crudFrontEnd
+cd ..\crudFrontEnd
 
 call npm run TableShowJs
 
-xcopy .\publicDir ..\CrudGenV1\public\Students /h /i /c /k /e /r /y
+xcopy .\publicDir\TableShowFromJs ..\CrudGenV1\public\Students\TableShowFromJs /h /i /c /k /e /r /y
+
+
+cd ..\FrontEndForClients
+
+call npm run students
+
+xcopy .\publicDir\Students ..\CrudGenV1\public\Students /h /i /c /k /e /r /y
