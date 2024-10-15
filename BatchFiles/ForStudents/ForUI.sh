@@ -1,6 +1,6 @@
 cd ../crudFrontEnd
 
-npm run TableShowJs
+npm run Table-ShowFromJs
 npm run CreateStatic
 npm run UnProtected-CreateStatic
 
