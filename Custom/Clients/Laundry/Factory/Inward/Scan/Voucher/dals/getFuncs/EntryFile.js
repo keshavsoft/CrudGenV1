@@ -1,8 +1,9 @@
-import { StartFunc as GetVoucher } from '../../kLowDb/ReadFromApi/GetVoucher.js';
+// import { StartFunc as GetVoucher } from '../../kLowDb/ReadFromApi/GetVoucher.js';
 import { StartFunc as GetVoucherQrStatus } from '../../kLowDb/ReadFileList/GetVoucherQrStatus.js';
+import { StartFunc as GetVoucher } from '../../kLowDb/ReadFileList/GetVoucher.js';
 
-let GetFunc = () => {
-    return GetVoucher();
+let GetFunc = ({ inFactory }) => {
+    return GetVoucher({ inFactory });
 };
 
 let GetFilterFactoryFunc = ({ inFactory }) => {
