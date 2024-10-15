@@ -3,7 +3,7 @@ import path from "path";
 import dotenv from 'dotenv';
 
 dotenv.config();
-const CommonCreate = "Create";
+const CommonCreate = "SubTable/Create";
 
 import { StartFunc as home } from "./EndPointsContent/home.js";
 import { StartFunc as GenUuId } from "./EndPointsContent/GenUuId.js";
