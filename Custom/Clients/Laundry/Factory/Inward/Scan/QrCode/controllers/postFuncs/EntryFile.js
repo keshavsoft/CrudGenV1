@@ -7,8 +7,6 @@ let PostFunc = (req, res) => {
 
     let LocalFromRepo = PostFuncRepo({ inFactory: LocalFactory, inDataInsert: LocalBody });
     res.json(LocalFromRepo);
-
 };
-
 
 export { PostFunc };
