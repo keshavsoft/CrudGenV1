@@ -7,8 +7,7 @@ import {
 }
     from '../../controllers/getFuncs/EntryFile.js';
 
-router.get('/', GetFunc);
-router.get('FilterFactory/:inFactory', GetFilterFactoryFunc);
+router.get('/:inFactory', GetFunc);
 router.get('/QrStatus/:inFactory', GetQrStatusFunc);
 
 export { router };
