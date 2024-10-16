@@ -1,7 +1,8 @@
 import {
     GetFunc as GetFuncDal,
     GetAsObjectFunc as GetAsObjectFuncDal,
-    GetAsArrayFunc as GetAsArrayFuncDal
+    GetAsArrayFunc as GetAsArrayFuncDal,
+    GetAsArrayAsIntFunc as GetAsArrayAsIntFuncDal
 }
     from '../../dals/getFuncs/EntryFile.js';
 
@@ -19,6 +20,13 @@ let GetAsArrayFunc = ({ inKey, inValue }) => {
     });
 };
 
+let GetAsArrayAsIntFunc = ({ inKey, inValue }) => {
+    return GetAsArrayAsIntFuncDal({
+        inKey, inValue
+    });
+};
+
 export {
-    GetFunc, GetAsObjectFunc, GetAsArrayFunc
+    GetFunc, GetAsObjectFunc, GetAsArrayFunc,
+    GetAsArrayAsIntFunc
 };

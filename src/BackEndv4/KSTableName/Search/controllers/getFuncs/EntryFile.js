@@ -1,7 +1,8 @@
 import {
     GetFunc as GetFuncRepo,
     GetAsObjectFunc as GetAsObjectFuncRepo,
-    GetAsArrayFunc as GetAsArrayFuncRepo
+    GetAsArrayFunc as GetAsArrayFuncRepo,
+    GetAsArrayAsIntFunc as GetAsArrayAsIntFuncRepo
 } from '../../repos/getFuncs/EntryFile.js';
 
 let GetFunc = async (req, res) => {
@@ -47,6 +48,23 @@ let GetAsArrayFunc = async (req, res) => {
     res.status(200).json(LocalFromRepo.JsonData);
 };
 
+let GetAsArrayAsIntFunc = async (req, res) => {
+    let LocalFilterKey = req.query.Key;
+    let LocalFilterValue = req.query.Value;
+
+    let LocalFromRepo = GetAsArrayAsIntFuncRepo({
+        inKey: LocalFilterKey,
+        inValue: LocalFilterValue
+    });
+
+    if (LocalFromRepo.KTF === false) {
+        res.status(500).send(LocalFromRepo.KReason);
+        return;
+    };
+
+    res.status(200).json(LocalFromRepo.JsonData);
+};
+
 export {
-    GetFunc, GetAsObjectFunc, GetAsArrayFunc
+    GetFunc, GetAsObjectFunc, GetAsArrayFunc, GetAsArrayAsIntFunc
 };
