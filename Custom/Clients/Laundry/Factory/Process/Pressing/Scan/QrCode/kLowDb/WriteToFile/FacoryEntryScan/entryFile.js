@@ -1,7 +1,8 @@
 import { StartFunc as StartFuncwriteFileFromModal } from './WithChecking/StartFunc.js';
 import { StartFuncForBookings as StartFuncCheckQrCodes } from "./Check/CheckQrCodes.js";
 import { StartFunc as CheckBrcnchScan } from "./Check/CheckBrcnchScan.js";
-import { StartFunc as CheckBrcnchReturnScan } from "./Check/CheckBrcnchReturnScan.js";
+import { StartFunc as WashingCancelScan } from "./Check/WashingCancelScan.js";
+import { StartFunc as PressingCancelScan } from "./Check/PressingCancelScan.js";
 
 let StartFunc = ({ inFactory, inDataInsert }) => {
 
@@ -25,10 +26,17 @@ let StartFunc = ({ inFactory, inDataInsert }) => {
         return LocalReturnData;
     };
 
-    let LocalCheckBrcnchReturnScan = CheckBrcnchReturnScan({ inTable: LocalTable, inQrCodeId: LocalQrId });
+    let LocalCheckBrcnchReturnScan = WashingCancelScan({ inTable: LocalTable, inQrCodeId: LocalQrId });
 
     if (LocalCheckBrcnchReturnScan.KTF === false) {
         LocalReturnData.KReason = LocalCheckBrcnchReturnScan.KReason
+        return LocalReturnData;
+    };
+
+    let LocalCheckPressingCancelScan = PressingCancelScan({ inTable: LocalTable, inQrCodeId: LocalQrId });
+
+    if (LocalCheckPressingCancelScan.KTF === false) {
+        LocalReturnData.KReason = LocalCheckPressingCancelScan.KReason
         return LocalReturnData;
     };
     return StartFuncwriteFileFromModal({ inDataToInsert: LocalDataInsert });
