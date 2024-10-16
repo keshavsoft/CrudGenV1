@@ -30,7 +30,7 @@ let StartFunc = ({ inFactory }) => {
     let LocalFilterWashing = WashingScandb.data.filter(e => e.FactoryName === LocalFactory);
     let LocalFilterPressingScan = PressingScandb.data.filter(e => e.FactoryName === LocalFactory);
 
-    let LocalFilterPressingCancelScan = PressingCancelScandb.data.filter(e => e.FactorySelected === LocalFactory);
+    let LocalFilterPressingCancelScan = PressingCancelScandb.data.filter(e => e.FactoryName === LocalFactory);
 
     let LocalFilterEntryScanData = LocalFilterWashing.filter(loopQr =>
         !WashingCancelScandb.data.some(loopScan => loopScan.QrCodeId == loopQr.QrCodeId)
@@ -70,7 +70,7 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inPressingScan, inEntryCancelSca
             QrCodeId: loopScan.QrCodeId,
             BranchName: loopScan?.BranchName,
             Status: match,
-            EntryReturnStarus: CheckEntryReturn,
+            EntryReturnStatus: CheckEntryReturn,
             TimeSpan: TimeSpan({ DateTime: loopScan.DateTime })
         };
     }).filter(record => record.MatchedRecord !== null);
