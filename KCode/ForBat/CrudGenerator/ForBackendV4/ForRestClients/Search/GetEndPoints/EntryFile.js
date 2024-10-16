@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 const CommonSearch = "Search";
 
+import { StartFunc as home } from "./EndPointsContent/home.js";
+import { StartFunc as asArray } from "./EndPointsContent/asArray.js";
+
 let StartFunc = ({ inTablesCollection, inTo }) => {
     let LocalTypeName = `${CommonSearch}/restClients/GetEndPoints`;
     let LocalTo = inTo;
@@ -18,7 +21,12 @@ let StartFunc = ({ inTablesCollection, inTo }) => {
         let LoopInsideFileName = path.parse(element.name).name;
         let LocalFilePath = `${LocalTo}/${LoopInsideFileName}/${LocalTypeName}`;
 
-        LocalFuncWriteToHome({
+        home({
+            inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
+            inTo: `${LocalFilePath}`
+        });
+
+        asArray({
             inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
             inTo: `${LocalFilePath}`
         });
