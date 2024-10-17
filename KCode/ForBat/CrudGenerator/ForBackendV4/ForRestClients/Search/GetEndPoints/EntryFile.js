@@ -7,6 +7,7 @@ const CommonSearch = "Search";
 import { StartFunc as home } from "./EndPointsContent/home.js";
 import { StartFunc as asArray } from "./EndPointsContent/asArray.js";
 import { StartFunc as asObject } from "./EndPointsContent/asObject.js";
+import { StartFunc as asArrayAsInt } from "./EndPointsContent/asArrayAsInt.js";
 
 let StartFunc = ({ inTablesCollection, inTo }) => {
     let LocalTypeName = `${CommonSearch}/restClients/GetEndPoints`;
@@ -36,6 +37,12 @@ let StartFunc = ({ inTablesCollection, inTo }) => {
             inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
             inTo: `${LocalFilePath}`
         });
+
+        asArrayAsInt({
+            inFrom: `${process.env.PORT}/${LocalTo}/${LoopInsideFileName}`,
+            inTo: `${LocalFilePath}`
+        });
+
     });
 };
 
