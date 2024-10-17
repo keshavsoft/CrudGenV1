@@ -1,5 +1,5 @@
 @echo off
-cd ..\..\..\LaundryFrontEnd
+cd ..\LaundryFrontEnd
 
 call npm run WashtexBranch
 call npm run BranchToday
