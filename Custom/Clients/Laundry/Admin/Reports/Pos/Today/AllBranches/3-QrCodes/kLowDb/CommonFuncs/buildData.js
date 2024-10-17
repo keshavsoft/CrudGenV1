@@ -2,6 +2,7 @@ import { StartFunc as QrCodes } from './QrCodes.js';
 import { StartFunc as BranchScan } from './BranchScan.js';
 import { StartFunc as EntryScan } from './EntryScan.js';
 import { StartFunc as WashingScan } from './WashingScan.js';
+import { StartFunc as PressingScan } from "./PressingScan.js";
 
 let StartFunc = () => {
     const QrCodeData = QrCodes();
@@ -9,22 +10,25 @@ let StartFunc = () => {
     const BranchScanData = BranchScan();
     const EntryScanData = EntryScan();
     const WashingScanData = WashingScan();
+    const PressingScanData = PressingScan();
 
     let jVarLocalTransformedData = jFLocalMergeFunc({
         inQrData: QrCodeData,
         inScandata: BranchScanData,
         inEntryScanData: EntryScanData,
-        inWashingScanData: WashingScanData
+        inWashingScanData: WashingScanData,
+        inPressingScanData: PressingScanData
     });
 
     return jVarLocalTransformedData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData, inWashingScanData }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData, inWashingScanData, inPressingScanData }) => {
     let jVarLocalReturnObject = inQrData.map(loopQr => {
         const match = inScandata.some(loopScan => loopScan.QrCodeId == loopQr.pk);
         const LoopInsideFindEntryScan = inEntryScanData.some(loopScan => loopScan.QrCodeId == loopQr.pk);
         const LoopInsideFindWashingScan = inWashingScanData.some(loopScan => loopScan.QrCodeId == loopQr.pk);
+        const LoopInsideFindPressingScan = inPressingScanData.some(loopScan => loopScan.QrCodeId == loopQr.pk);
 
         return {
             QrCodeId: loopQr.pk,
@@ -38,6 +42,7 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData, inWashingScanDa
             Status: match,
             FactoryScan: LoopInsideFindEntryScan,
             WashingScan: LoopInsideFindWashingScan,
+            PressingScan: LoopInsideFindPressingScan,
             TimeSpan: TimeSpan({ DateTime: loopQr.BookingData.OrderData.Currentdateandtime })
         };
     });
