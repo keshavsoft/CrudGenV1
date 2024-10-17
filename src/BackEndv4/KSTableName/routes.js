@@ -14,6 +14,7 @@ import { router as Bulk } from './Bulk/routes.js';
 import { router as ShowWithColumns } from './ShowWithColumns/routes.js';
 import { router as Sort } from './Sort/routes.js';
 import { router as RowShow } from './RowShow/routes.js';
+import { router as Filter } from './Filter/routes.js';
 
 import { router as SubTable } from './SubTable/routes.js';
 
@@ -28,7 +29,8 @@ router.use('/Search', Search);
 router.use('/Bulk', Bulk);
 router.use('/ShowWithColumns', ShowWithColumns);
 router.use('/Sort', Sort);
-router.use('/RowShow',RowShow);
+router.use('/RowShow', RowShow);
+router.use('/Filter', Filter);
 
 router.use('/SubTable', SubTable);
 
