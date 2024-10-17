@@ -2,6 +2,7 @@ import { StartFunc as StartFuncwriteFileFromModal } from './WithChecking/StartFu
 import { StartFuncForBookings as StartFuncCheckQrCodes } from "./Check/CheckQrCodes.js";
 import { StartFunc as CheckBrcnchScan } from "./Check/CheckBrcnchScan.js";
 import { StartFunc as CheckBrcnchReturnScan } from "./Check/CheckBrcnchReturnScan.js";
+import { StartFunc as CheckPressingScan } from "./Check/CheckPressingScan.js";
 
 let StartFunc = ({ inFactory, inDataInsert }) => {
 
@@ -28,6 +29,13 @@ let StartFunc = ({ inFactory, inDataInsert }) => {
 
     if (LocalCheckBrcnchReturnScan.KTF === false) {
         LocalReturnData.KReason = LocalCheckBrcnchReturnScan.KReason
+        return LocalReturnData;
+    };
+
+    let LocalCheckPressingScan = CheckPressingScan({ inTable: LocalTable, inQrCodeId: LocalQrId });
+
+    if (LocalCheckPressingScan.KTF === false) {
+        LocalReturnData.KReason = LocalCheckPressingScan.KReason
         return LocalReturnData;
     };
 
