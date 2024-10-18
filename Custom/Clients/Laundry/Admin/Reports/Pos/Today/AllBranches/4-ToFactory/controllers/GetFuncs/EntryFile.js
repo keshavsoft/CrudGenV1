@@ -14,8 +14,6 @@ let GetFuncs = (req, res) => {
     res.status(200).json(LocalFromRepo);
 };
 
-
-
 export {
     GetFuncs
 };
