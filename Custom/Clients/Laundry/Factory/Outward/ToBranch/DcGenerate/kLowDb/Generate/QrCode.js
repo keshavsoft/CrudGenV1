@@ -1,70 +1,36 @@
 import { StartFunc as StartFuncReadBranchFile } from '../CommonFuncs/readBranchFile.js';
-import { StartFunc as StartFuncwriteFileFromModal } from './WithChecking/StartFunc.js';
-import { StartFuncForBookings as StartFuncCheckQrCodes } from "./Check/CheckQrCodes.js";
-import { StartFunc as StartFuncNoOrderCheck } from "./Check/NoOrderCheck.js";
-import { StartFunc as StartFuncSettlementCheck } from "./Check/SettlementCheck.js";
+import { StartFunc as ReturnDbObject } from "../CommonFuncs/ReturnDbObject.js";
 
-let StartFunc = ({ inBranch, inId }) => {
-    console.log("kkkkkk:",inBranch, inId );
-    
-    let LocalTable = inBranch;
-    let LocalBookingPk = inId;
-    let LocalReturnData = { KTF: false };
+let StartFunc = ({ inId }) => {
+    let LocalVouherPk = inId;
 
-    let LocalCheck = StartFuncCheckQrCodes({ inTable: LocalTable, inBookingPk: LocalBookingPk });
+    let LocalQrCodeData = StartFuncReadBranchFile({ inVouherPk: LocalVouherPk });
 
-    if (LocalCheck.KTF === false) {
-        return LocalReturnData;
+    const result = groupBy(LocalQrCodeData, "BranchName");
+
+    for (const [key, value] of Object.entries(result)) {
+        const LoopInside = ReturnDbObject({ inTableName: key });
+        
+        LoopInside.read();
+
+        LoopInside.data.push(...value);
+        LoopInside.write();
     };
 
-    const db = StartFuncReadBranchFile({ inTable: LocalTable });
-    db.read();
-    let LocalBranchData = db.data;
-
-    let LocalOrdeCheck = StartFuncNoOrderCheck({ inBranchData: LocalBranchData, inBookingPk: LocalBookingPk });
-
-    if (LocalOrdeCheck.KTF === false) {
-        LocalReturnData.KReason = LocalOrdeCheck.KReason;
-        return LocalReturnData;
-    };
-
-    let LocalSettlementCheck = StartFuncSettlementCheck({ inBranchData: LocalBranchData, inBookingPk: LocalBookingPk });
-
-    if (LocalSettlementCheck.KTF === false) {
-        LocalReturnData.KReason = LocalSettlementCheck.KReason;
-        return LocalReturnData;
-    };
-
-    let LocalIdByOrderData = LocalSettlementCheck.JsonData;
-
-    let LocalGenerateReference = {}
-    LocalGenerateReference.GenerateReference = {}
-    LocalGenerateReference.GenerateReference.ReferncePk = LocalBookingPk;
-    let LocalBookingData = {};
-    LocalBookingData.BookingData = {};
-    LocalBookingData.OrderNumber = LocalIdByOrderData.UuId
-    LocalBookingData.BookingData.CustomerData = LocalIdByOrderData.CustomerData;
-    LocalBookingData.BookingData.OrderData = LocalIdByOrderData.OrderData;
-    LocalBookingData.BookingData.AddOnData = LocalIdByOrderData.AddOnData;
-    LocalBookingData.BookingData.CheckOutData = LocalIdByOrderData.CheckOutData;
-
-    Object.entries(LocalIdByOrderData.ItemsInOrder).forEach(([key, value]) => {
-        LocalForEachFunc({ inGenerateReference: LocalGenerateReference, itemData: value, inBookingData: LocalBookingData });
-    });
-    LocalReturnData.KTF = true;
-    delete LocalReturnData.JsonData;
-    return LocalReturnData;
+    return result;
 };
 
-let LocalForEachFunc = ({ inGenerateReference, itemData, inBookingData }) => {
-    for (let i = 0; i < itemData.Pcs; i++) {
+function groupBy(array, key) {
+    return array.reduce((result, item) => {
+        const groupKey = typeof key === 'function' ? key(item) : item[key];
 
-        let LocalSendData = {};
-        LocalSendData.Pcs = i
-        LocalSendData = { ...inGenerateReference, ...itemData, ...inBookingData };
-        StartFuncwriteFileFromModal({ inDataToInsert: LocalSendData });
+        if (!result[groupKey]) {
+            result[groupKey] = [];
+        }
 
-    };
+        result[groupKey].push(item);
+        return result;
+    }, {});
 };
 
 export { StartFunc };

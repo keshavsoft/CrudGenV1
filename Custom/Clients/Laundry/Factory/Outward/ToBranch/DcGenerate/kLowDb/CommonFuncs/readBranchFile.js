@@ -1,19 +1,13 @@
-import { LowSync } from 'lowdb'
-import { JSONFileSync } from 'lowdb/node'
-import Configjson from '../../../../Config.json' assert { type: 'json' };
+import { StartFunc as FactoryToBranchScan } from "../../../../../../../../../binV4/FactoryToBranchScan/Show/kLowDb/PullData/returnAsArray.js";
 
-let StartFunc = ({ inTable }) => {
-    let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
+let StartFunc = ({ inVouherPk }) => {
+    let LocalReturnData = FactoryToBranchScan();
 
-    LocalReturnData.KTF = false;
+    let LocalFilteredArray = LocalReturnData.filter(element => {
+        return element.VoucherRef === inVouherPk;
+    });
 
-    LocalReturnData.UserDataFilePath = `${Configjson.jsonConfig.DataPath}/${Configjson.jsonConfig.DataPk}/${inTable}.json`;
-
-    const defaultData = { error: "From KLowDb" }
-
-    const db = new LowSync(new JSONFileSync(LocalReturnData.UserDataFilePath), defaultData);
-
-    return db;
+    return LocalFilteredArray;
 };
 
 export { StartFunc };

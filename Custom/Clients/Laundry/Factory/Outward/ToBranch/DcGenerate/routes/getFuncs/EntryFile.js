@@ -3,6 +3,6 @@ var router = express.Router();
 
 import { GetIdFunc } from '../../controllers/getFuncs/EntryFile.js';
 
-router.get('/:inBranch/:inId', GetIdFunc);
+router.get('/:inId', GetIdFunc);
 
 export { router };
