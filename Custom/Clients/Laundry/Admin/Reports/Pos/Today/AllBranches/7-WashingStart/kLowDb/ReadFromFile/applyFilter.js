@@ -1,4 +1,4 @@
-const CommonFilterKey = "WashingStart";
+const CommonFilterKey = "WashingScan";
 
 const StartFunc = ({ inQrcodeArray }) => {
     const LocalFilteredArray = inQrcodeArray.filter(element => {
