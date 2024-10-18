@@ -1,7 +1,7 @@
-import { StartFunc as applyFilter } from '../../kLowDb/ReadFromFile/applyFilter.js';
+import { StartFunc as entryFile } from '../../kLowDb/ReadFromFile/entryFile.js';
 
 let GetAllFuncs = () => {
-    return applyFilter();
+    return entryFile();
 };
 
 export {

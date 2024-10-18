@@ -1,17 +1,8 @@
-import { StartFunc as buildData } from '../../../CommonFuncs/buildData.js';
+const CommonFilterKey = "Status";
 
-let StartFunc = () => {
-    const LocalQrCodeData = buildData();
-    const LocalFilteredArray = LocalFilterData({ inQrcodeArray: LocalQrCodeData });
-    // let jVarLocalTransformedData = jFLocalMergeFunc({ inQrData: Qrdb });
-    let LocalArrayReverseData = LocalFilteredArray.slice().reverse();
-
-    return LocalArrayReverseData;
-};
-
-const LocalFilterData = ({ inQrcodeArray }) => {
+const StartFunc = ({ inQrcodeArray }) => {
     const LocalFilteredArray = inQrcodeArray.filter(element => {
-        return element.Status === true;
+        return element[CommonFilterKey] === true;
     });
 
     return LocalFilteredArray;

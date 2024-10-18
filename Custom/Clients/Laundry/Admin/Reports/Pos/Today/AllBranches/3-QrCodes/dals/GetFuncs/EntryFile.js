@@ -1,11 +1,11 @@
-import { StartFunc as ToadyQrAllReports } from '../../kLowDb/ReadFromFile/ToadyQrAllReports.js';
+import { StartFunc as TodayAllQrCodes } from '../../kLowDb/ReadFromFile/TodayAllQrCodes.js';
 
 let GetAllFuncs = () => {
-    return ToadyQrAllReports();
+    return TodayAllQrCodes();
 };
 
 let GetAsIsFuncs = () => {
-    return ToadyQrAllReports();
+    return TodayAllQrCodes();
 };
 
 export {
