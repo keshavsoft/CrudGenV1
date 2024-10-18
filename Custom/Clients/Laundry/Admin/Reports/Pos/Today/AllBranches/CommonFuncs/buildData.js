@@ -25,7 +25,7 @@ let StartFunc = () => {
     return jVarLocalTransformedData;
 };
 
-let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData, inWashingScanData, inPressingScanData, inCompletionScan }) => {
+let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData, inWashingScanData, inPressingScanData, inCompletionScanData }) => {
     let jVarLocalReturnObject = inQrData.map(loopQr => {
         const match = inScandata.some(loopScan => loopScan.QrCodeId == loopQr.pk);
         const LoopInsideFindEntryScan = inEntryScanData.some(loopScan => loopScan.QrCodeId == loopQr.pk);
