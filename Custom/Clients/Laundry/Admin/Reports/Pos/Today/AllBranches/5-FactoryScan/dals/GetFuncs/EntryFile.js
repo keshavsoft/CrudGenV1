@@ -1,4 +1,4 @@
-import { StartFunc as entryFile } from '../../kLowDb/ReadFromFile/entryFile';
+import { StartFunc as entryFile } from '../../kLowDb/ReadFromFile/entryFile.js';
 
 let GetAllFuncs = () => {
     return entryFile();
