@@ -1,4 +1,4 @@
-const StartFunc = ({ inDataToInsert, inData, inColumns }) => {
+const StartFunc = ({ inDataToInsert, inData }) => {
     let LocalInData = inData;
     let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
 
@@ -14,7 +14,7 @@ const StartFunc = ({ inDataToInsert, inData, inColumns }) => {
 
     LocalReturnData.InsertData = { ...inDataToInsert, UuId: MaxPk, pk: MaxPk, DateTime: Timestamp() };
     LocalReturnData.KTF = true;
-    
+
     return LocalReturnData
 };
 

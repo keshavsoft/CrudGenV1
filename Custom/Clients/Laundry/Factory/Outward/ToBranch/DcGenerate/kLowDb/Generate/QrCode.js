@@ -1,5 +1,5 @@
 import { StartFunc as StartFuncReadBranchFile } from '../CommonFuncs/readBranchFile.js';
-import { StartFunc as ReturnDbObject } from "../CommonFuncs/ReturnDbObject.js";
+import { StartFunc as createDC } from "./createDC.js";
 
 let StartFunc = ({ inId }) => {
     let LocalVouherPk = inId;
@@ -9,12 +9,7 @@ let StartFunc = ({ inId }) => {
     const result = groupBy(LocalQrCodeData, "BranchName");
 
     for (const [key, value] of Object.entries(result)) {
-        const LoopInside = ReturnDbObject({ inTableName: key });
-        
-        LoopInside.read();
-
-        LoopInside.data.push(...value);
-        LoopInside.write();
+        createDC({ inBranchName: key });
     };
 
     return result;

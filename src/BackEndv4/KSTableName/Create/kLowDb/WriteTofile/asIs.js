@@ -6,11 +6,11 @@ let StartFunc = ({ inDataToInsert }) => {
     let LocalReturnData = { KTF: false, JSONFolderPath: "", CreatedLog: {} };
 
     const db = ReturnDbObject();
- 
+    db.read();
+
     let LocalDataWithUuid = LocalFuncGeneratePk({
         inDataToInsert: LocalinDataToInsert,
-        inData: db.data,
-        inColumns: LocalTableSchema.fileData
+        inData: db.data
     });
 
     if (LocalDataWithUuid.KTF === false) {
