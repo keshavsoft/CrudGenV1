@@ -46,6 +46,7 @@ let jFLocalMergeFunc = ({ inQrData, inScandata, inEntryScanData, inWashingScanDa
             WashingScan: LoopInsideFindWashingScan,
             PressingScan: LoopInsideFindPressingScan,
             CompletionScan: LoopInsideFindCompletionScan,
+            BranchName: loopQr.BookingData.OrderData.BranchName,
             TimeSpan: TimeSpan({ DateTime: loopQr.BookingData.OrderData.Currentdateandtime })
         };
     });
