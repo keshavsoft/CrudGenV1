@@ -21,11 +21,9 @@ let StartFunc = () => {
         return LocalReturnData;
     };
 
-    LocalReturnData.KTF = true;
-    LocalReturnData.inDb = db
-    LocalReturnData.inTableSchema = dbFromDbObjectWithSchema.TableSchema
+    db.read();
 
-    return LocalReturnData;
+    return db.data;
 };
 
 export { StartFunc };

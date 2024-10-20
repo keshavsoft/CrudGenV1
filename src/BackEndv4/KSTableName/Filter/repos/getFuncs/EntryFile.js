@@ -1,11 +1,15 @@
 import {
-    GetFunc as GetFuncDal
+    GetFunc as GetFuncDal, GetMaxRowFunc as GetMaxRowFuncDal
 } from '../../dals/getFuncs/EntryFile.js';
 
 let GetFunc = ({ inFilterObject }) => {
     return GetFuncDal({ inFilterObject });
 };
 
+let GetMaxRowFunc = () => {
+    return GetMaxRowFuncDal();
+};
+
 export {
-    GetFunc
+    GetFunc, GetMaxRowFunc
 };
