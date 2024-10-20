@@ -1,16 +1,16 @@
 import { router as routerForUtility } from "./Utility/routes.js";
 import { router as routerFromCommon } from "./Common/routes.js";
- import { router as routerFromCustom } from "./Custom/routes.js";
-// import { router as routerFromLogin } from "./Login/routes.js";
+import { router as routerFromCustom } from "./Custom/routes.js";
+import { router as routerFromLogin } from "./Login/routes.js";
 
 import { router as Cors } from "./Cors/routes.js";
 
-// import { router as routerFromBinV5Secured } from "./binV5Secured/routes.js";
+import { router as routerFromBinV5Secured } from "./binV5Secured/routes.js";
 import { router as routerFromBinV4 } from "./binV4/routes.js";
 
 import { StartFunc as StartFuncPortListen } from "./PortListen.js";
 
-// import { StartFunc as MiddleWaresBinSecured } from "./MiddleWares/MiddleWares.binSecured/EntryFile.js";
+import { StartFunc as MiddleWaresBinSecured } from "./MiddleWares/MiddleWares.binSecured/EntryFile.js";
 import { StartFunc as StartFuncKWSServer } from "./Projects/KWSServer/EntryFile.js";
 
 import express from 'express';
@@ -50,12 +50,12 @@ const CommonCorsFunc = (req, res, next) => {
 };
 
 app.use('/binV4', routerFromBinV4);
-// app.use('/binV5Secured', MiddleWaresBinSecured, routerFromBinV5Secured);
+app.use('/binV5Secured', MiddleWaresBinSecured, routerFromBinV5Secured);
 
 app.use('/utility', routerForUtility);
 app.use('/Common', routerFromCommon);
 app.use('/Custom', routerFromCustom);
-// app.use('/Login', routerFromLogin);
+app.use('/Login', routerFromLogin);
 app.use('/Cors', CommonCorsFunc, Cors);
 
 StartFuncKWSServer(server);
