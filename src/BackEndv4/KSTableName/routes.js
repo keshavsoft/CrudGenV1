@@ -15,6 +15,7 @@ import { router as ShowWithColumns } from './ShowWithColumns/routes.js';
 import { router as Sort } from './Sort/routes.js';
 import { router as RowShow } from './RowShow/routes.js';
 import { router as Filter } from './Filter/routes.js';
+import { router as SearchForStatus } from './SearchForStatus/routes.js';
 
 import { router as SubTable } from './SubTable/routes.js';
 
@@ -31,6 +32,7 @@ router.use('/ShowWithColumns', ShowWithColumns);
 router.use('/Sort', Sort);
 router.use('/RowShow', RowShow);
 router.use('/Filter', Filter);
+router.use('/SearchForStatus', SearchForStatus);
 
 router.use('/SubTable', SubTable);
 

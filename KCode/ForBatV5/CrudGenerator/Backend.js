@@ -1,25 +1,32 @@
 import { StartFunc as StartFuncPrepareReadColumnsData } from "./PrepareTablesSchema/ReadColumnsData.js";
-import { StartFunc as ForBackendV4 } from './ForBackendV4/EntryFile.js';
+import { StartFunc as ForBackendV5 } from './ForBackendV5/EntryFile.js';
 import { StartFunc as ForBackendV5Secured } from './ForBackendV5Secured/EntryFile.js';
 
-let StartFunc = ({ inFilesArray }) => {
+let StartFunc = ({ inFilesArray, inEndPointsNeeded }) => {
     let LocalFilesArray = inFilesArray;
+    let LocalEndPointsNeeded = inEndPointsNeeded;
 
     StartFuncPrepareReadColumnsData({ inTableData: LocalFilesArray });
 
-    LocalFuncForBackEndv4({ inFilesArray: LocalFilesArray });
+    LocalFuncForBackEndv5({
+        inFilesArray: LocalFilesArray,
+        inEndPointsNeeded: LocalEndPointsNeeded
+    });
+
     LocalFuncForBackEndv5Secured({ inFilesArray: LocalFilesArray });
 };
 
-let LocalFuncForBackEndv4 = ({ inFilesArray }) => {
+let LocalFuncForBackEndv5 = ({ inFilesArray, inEndPointsNeeded }) => {
+    let LocalEndPointsNeeded = inEndPointsNeeded;
     let LocalFilesArray = inFilesArray;
-    let CommonFrom = "src/BackEndv4";
+    let CommonFrom = "src/BackEndv5";
     let CommonTo = "binV4";
 
-    ForBackendV4({
+    ForBackendV5({
         inTablesCollection: LocalFilesArray,
         inFrom: CommonFrom,
-        inTo: CommonTo
+        inTo: CommonTo,
+        inEndPointsNeeded: LocalEndPointsNeeded
     });
 
     console.log(`Generated the endpoints in backend : ${CommonTo}`);
